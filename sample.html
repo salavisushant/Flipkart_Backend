@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="icon" href="https://static-assets-web.flixcart.com/www/promos/new/20150528-140547-favicon-retina.ico"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+    <link rel="stylesheet" href="./style/style.css" />
+    <title>Login/Signup</title>
+
+
+    <style>
+        body{
+
+            justify-content:center;
+            align-items:center;
+            text-align:center;
+        }
+        #login_container{
+                 display:flex;
+                 border:1px solid #2874f0;
+                 height:500px;
+                 width:50%;
+                 margin:10%;
+                 margin-left:25%;
+                 margin-right:25%;
+                 margin-top:15px;
+                 margin-bottom:5px;
+        }
+
+        #login_left{
+
+            
+            max-height:100%;
+            width:50%;
+           
+        }
+
+        #login_right{
+            padding:3%;
+text-align:left;
+
+max-height:100%;
+width:50%;
+margin:1%;
+}
+#login_container input{
+    
+    width:95%;
+    font-size:20px;
+    padding:1%;
+    margin-bottom:8%;
+}
+
+button{
+width:100%;
+height:15%;
+text-align:center;
+margin-top:5%;
+padding:2%;
+font-size:18px;
+border-radius:7px;
+border:0px;
+cursor:pointer;
+
+}
+
+img{
+    object-fit:fill;
+    height:100%;
+    width:100%;
+    
+}
+#ls{
+    display:none;
+}
+
+#otpbox{
+    display:none;
+}
+#bosign{
+    display:none;
+}
+
+/* beginning of navbar/footer css*/
+
+/* end of navbar/footer css  */
+    </style>
+</head>
+<body>
+    <div class="navbar"></div>
+    
+<!-- <img src="https://i.postimg.cc/SRBF0gnr/Screenshot-161.jpg" style="width:100%;object-fit:contain"/> -->
+
+    <!--end of navbar-->
+    <div id="login_container">
+
+                <div id="login_left">
+                            <img id="im"src="https://i.postimg.cc/xTCvxhCN/q111.png"/>
+                </div>
+
+                <div id="login_right">
+                    <div id="l">
+                    <label>Enter Email/Mobile number</label><br>
+                    <input id="logemail"type="text"><br>
+                    <label>Enter Password</label><br>
+                    <input id="logpass"type="password"><br>
+                    <label>By continuing, you agree to Flipkart's Terms of Use and Privacy Policy.</label>
+                    <button onclick="getdata()"style="background-color:orange;color:white;margin-bottom:4%;">Login</button>
+
+                    <label style="margin:48%;margin-bottom:5%;color:grey;"> OR </label>
+                    <button style="background-color:white;color:blue;margin-bottom:4%;border:1px solid grey">Request OTP</button>
+               
+                   <label style="cursor:pointer;color:blue" onclick="signup()"> New to Flipkart? Create an account</label>
+                
+                    </div>
+
+                    <div id="ls">
+                        <label>Enter Email</label><br>
+                        <input id="mob" type="text"/><br>
+                        <div id="otpbox">
+                            <label> OTP sent to Email</label><br><br>
+                            <label>Enter OTP</label><br>
+                            <input id="otp" type="text"/><br>
+                            <label>Set password</label><br>
+                            <input id="pass" type="password"/><br>
+                        </div>
+                        <label>By continuing, you agree to Flipkart's Terms of Use and Privacy Policy.</label><br>
+                        <button id="botp" style="background-color:orange;color:white;margin-bottom:4%;"onclick="sendotp()">Continue</button>
+                        <button id="bosign" style="background-color:orange;color:white;margin-bottom:4%;"onclick="verify()">Signup</button>
+
+                        <button onclick="login()" style="background-color:white;color:blue;margin-bottom:4%;border:1px solid grey">Existing User? Login</button>
+                        
+                    </div>
+                </div>
+            </div>
+    <div class="flipkart_info"></div>
+    <div class="foot"></div>
+
+    <!-- <img src="https://i.postimg.cc/PJ2p28NT/Screenshot-160.jpg" style="width:100%;object-fit:contain"/> -->
+</body>
+<script type="module">
+  import navbar from "./components/navbar.js";
+  import {footer,Flipkartinfo} from "./components/footer.js";
+  let nbar = document.querySelector(".navbar");
+  nbar.innerHTML = navbar();
+  let login_btn = document.querySelector(".login");
+  let login_drop = document.querySelector(".login_dropdown");
+  login_btn.onclick = function () {};
+  let more = document.querySelector(".more");
+  let micon = document.getElementById("micon");
+  more.onmouseenter = function(){
+    micon.innerText = "arrow_drop_up";
+  }
+  more.onmouseleave = function(){
+    micon.innerText = "arrow_drop_down";
+  }
+  let searchbar = document.getElementById("searchbox");
+  let output = document.getElementById("output");
+  searchbar.oninput = function(){
+    debounce(search,1000);
+  }
+  let info = document.querySelector(".flipkart_info")
+info.innerHTML = Flipkartinfo();
+// Footer 
+let foot = document.querySelector('.foot');
+foot.innerHTML = footer();
+var l_image=document.getElementById("im");
+var ldw=document.getElementById("l");
+var lds=document.getElementById("ls");
+//getdata();
+//createuser();
+var otpq=0;
+
+function verify(){
+var tempotp=document.getElementById("otp").value;
+if(tempotp==otpq)
+createuser();
+else
+alert("wrong otp");
+
+}
+// sends and verifies otp
+function sendotp(){
+var mobil=document.getElementById("mob").value;
+var otpb=document.getElementById("otpbox");
+otpb.style.display="block";
+ otpq= Math.floor(Math.random() * 900000)+ 100000;
+var con=document.getElementById("botp");
+var signn=document.getElementById("bosign");
+
+con.style.display="none";
+signn.style.display="block";
+
+fetch(`https://maker.ifttt.com/trigger/flipk/with/key/gZwHGvakwN95-oS8eLLlSi8M9-uWFx_6zz_6JOCxvky?value1=${mobil}&value2=${otpq}`).then(function(res){
+      // alert("success");
+      return res.json();
+    }).then(function(res){
+      
+    //  alert("success");
+      console.log(res);
+    }).catch(function(err){
+    console.log(err); 
+   });
+
+}
+
+
+//end ofsendotp
+
+
+function signup(){
+
+l_image.src="https://i.postimg.cc/DfRPYFWJ/q222.png";
+ldw.style.display="none";
+lds.style.display="block";
+
+}
+
+function login(){
+
+    l_image.src="https://i.postimg.cc/xTCvxhCN/q111.png";
+ldw.style.display="block";
+lds.style.display="none";
+
+}
+
+var objl={};
+function getdata(){
+
+   fetch("https://api.airtable.com/v0/app4CFWVkre4wPSBz/Table%201?",{
+    method:'GET',
+    headers:{'Authorization':'Bearer keyIkILcyVWkPItLt'}
+    
+  }).then(function(res){
+   return res.json(); 
+  }).then(function(res){
+      var record=res.records;
+
+       for(k in record)
+       objl[record[k].fields.email]=record[k].fields.password;
+       //console.log(objl);
+       var lem=document.getElementById("logemail").value;
+       var lpas=document.getElementById("logpass").value;
+       if(objl[lem]==lpas)
+       {alert("login successful");
+       window.location.href = "index.html";
+       localStorage.setItem("flag1",1);
+  }
+       else
+       alert("Username or password is incorrect");
+});
+     
+}
+
+//creates new user in the database
+function createuser(){
+
+var user=document.getElementById("mob").value;
+var passw=document.getElementById("pass").value;
+
+
+var obj={
+    "records": [
+        {
+            
+            "fields": {
+                "password": passw,
+                "email": user
+            }
+            
+        }
+    ]
+};
+obj=JSON.stringify(obj);
+fetch("https://api.airtable.com/v0/app4CFWVkre4wPSBz/Table%201?",{
+    method:'POST',
+    headers:{'Authorization':'Bearer keyIkILcyVWkPItLt',
+             'Content-Type':'application/json'},
+    body: obj,
+    
+  }).then(function(res){
+   return res.json(); 
+  }).then(function(res){
+    console.log(res);
+    alert("account created successfully");});
+
+}
+//end of createnewuser
+</script>
+
+
+</html>

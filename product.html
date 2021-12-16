@@ -1,0 +1,530 @@
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />    
+    <title>Product Page</title>
+    <link rel="shortcut icon" type="image/png" href="data:image/jpeg;base64,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">
+
+</head>
+<link rel="stylesheet" href="./style/pstyle.css" />
+<body>
+
+    <div class="navbar">
+      <div>
+      <a href = "index.html"><div class="logo">
+          <img src="https://static-assets-web.flixcart.com/www/linchpin/fk-cp-zion/img/flipkart-plus_8d85f4.png">
+          <div class="caption">
+              <div class="flex">
+                  <p>Explore</p>
+                  <p>Plus</p>
+              </div>
+              <img src="https://static-assets-web.flixcart.com/www/linchpin/fk-cp-zion/img/plus_aef861.png">
+          </div>
+      </div></a>
+      <div>
+          <div>
+              <input type="text" placeholder="Search for products,brand and more" id="searchbox">
+              <span class="material-icons" id = "search_icon">search</span>
+          </div>
+          <ul id="output"></ul>
+      </div>
+  </div>
+  <div>
+      <div class = "login_div">
+        <p class = "login">Login</p>
+        <ul class= "login_dropdown">
+            <li><b>New Customer? <a href = "./sample.html" class= "signup">Signup</a></b></li>
+            <li><span class="material-icons">account_circle</span> My Profile</li>
+            <li><span class="material-icons">add</span> Flipkart Plus Zone</li>
+            <li><span class="material-icons">list_alt</span> Orders</li>
+            <li><a href = "./wishlist.html"><span class="material-icons">favorite</span> Wishlist</a></li>
+            <li><span class="material-icons">confirmation_number</span> Rewards</li>
+            <li><span class="material-icons">account_balance_wallet</span> Gift Cards</li>
+        </ul>
+      </div>
+      <div class="more">
+          <div class="flex">
+              <p class = "text" id= "more">More</p>
+              <span class="material-icons" id = "micon">arrow_drop_down</span>
+          </div>
+          <ul class = "dropdown">
+              <li><span class="material-icons">notifications</span> Notification Preferances</li>
+              <li><span class="material-icons">shopping_bag</span> Sell on Flipkart</li>
+              <li><span class="material-icons">support_agent</span> 24x7 Customer Care</li>
+              <li><span class="material-icons">moving</span> Advertise</li>
+              <li><span class="material-icons">get_app</span> Download App</li>
+      </div>
+      <a href = "cart.html"><div class="flex">
+        <span class="material-icons">shopping_cart</span>
+        <p class = "text">Cart</p>
+    </div></a>
+  </div>
+    </div><!--navbar-->
+
+    <div id="contain">
+     <div id="containLeft"> 
+    <div id="containeri">
+        <div id="imgcontain"></div>
+        <div id="mainimgcontain"></div>
+    </div>
+    <div id="containbutton"></div>
+    </div>
+    <div id="containerd"></div>
+    </div><!--all prod data-->
+
+    <p id="info">
+        <img src="https://rukminim1.flixcart.com/www/2732/193/promos/01/12/2018/8aa01ab4-de88-4a46-9d93-5c7f3ebac2df.png?q=50" />
+    </p> <!--Image bet prod and foot-->
+    
+    <div class="foot">
+      <div class="container">
+        <div class="row">
+            <div class="col-md-7">
+                <div class="inner_row">
+                    <div class="col">  
+                        <p class="heading"> ABOUT </p>
+                        <p class="mb-1"> Contact Us </p>
+                        <p class="mb-1"> About Us </p>
+                        <p class="mb-1"> Careers </p>
+                        <p class="mb-1"> Flipkart Stroies </p>
+                        <p class="mb-1"> Press </p>
+                        <p class="mb-1"> Flipkart Wholesale </p>
+                        <p class="mb-1"> Corporate Information </p>
+                    </div>  
+        
+                    <div class="col">
+                        <p class="heading"> HELP </p>
+                        <p class="mb-1"> Payments </p>
+                        <p class="mb-1"> Shipping </p>
+                        <p class="mb-1"> Cancellations & returns </p>
+                        <p class="mb-1"> FAQ </p>
+                        <p class="mb-1"> Report Infringement </p>
+                    </div> 
+        
+                    <div class="col">
+                        <p class="heading"> POLICY </p>
+                        <p class="mb-1"> Return Policy </p>
+                        <p class="mb-1"> Terms Of Use </p>
+                        <p class="mb-1"> Security </p>
+                        <p class="mb-1"> Privacy </p>
+                        <p class="mb-1"> Sitemap </p>
+                        <p class="mb-1"> EPR Compliance </p>
+                    </div>
+        
+                    <div class="col">
+                        <p class="heading"> SOCIAL </p>
+                        <p class="mb-1"> Facebook </p>
+                        <p class="mb-1"> Twitter </p>
+                        <p class="mb-1"> YouTube </p>
+                    </div>    
+                </div>
+            </div>
+            <div class="col-md-5">
+                <div class="inner_row">
+                    <div class="col">
+                        <p class="heading"> Mail Us </p>
+                        <p class="mb"> Flipkart Internet Private Limited, </p>
+                        <p class="mb"> Buildings Alyssa, Begonia &amp; </p>
+                        <p class="mb"> Clove Embassy Tech Village, </p>
+                        <p class="mb"> Outer Ring Road, Devarabeesanahalli Village, </p>
+                        <p class="mb"> Bengaluru, 560103, </p>
+                        <p class="mb"> Karnataka, India</p>   
+                    </div>
+        
+                    <div class="col">
+                        <p class="heading"> Registered Office Address: </p>
+                        <p class="mb"> Flipkart Internet Private Limited, </p>
+                        <p class="mb"> Buildings Alyssa, Begonia &amp; </p>
+                        <p class="mb"> Clove Embassy Tech Village, </p>
+                        <p class="mb"> Outer Ring Road, Devarabeesanahalli Village, </p>
+                        <p class="mb"> Bengaluru, 560103, </p>
+                        <p class="mb"> Karnataka, India </p>
+                        <p class="mb"> CIN : U51109KA2012PTC066107 </p>
+                        <p class="mb"> Telephone: <a class="text-primary" href="tel:18002029898">1800 202 989</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <hr/>
+    </div>
+    <div class="row">
+        <div class="flex_footer"> 
+            <div>
+                <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxNiIgaGVpZ2h0PSIxNSIgdmlld0JveD0iMCAwIDE2IDE1Ij4KICAgIDxkZWZzPgogICAgICAgIDxsaW5lYXJHcmFkaWVudCBpZD0iYSIgeDE9IjAlIiB4Mj0iODYuODc2JSIgeTE9IjAlIiB5Mj0iODAuMjAyJSI+CiAgICAgICAgICAgIDxzdG9wIG9mZnNldD0iMCUiIHN0b3AtY29sb3I9IiNGRkQ4MDAiLz4KICAgICAgICAgICAgPHN0b3Agb2Zmc2V0PSIxMDAlIiBzdG9wLWNvbG9yPSIjRkZBRjAwIi8+CiAgICAgICAgPC9saW5lYXJHcmFkaWVudD4KICAgIDwvZGVmcz4KICAgIDxnIGZpbGw9Im5vbmUiIGZpbGwtcnVsZT0iZXZlbm9kZCI+CiAgICAgICAgPHBhdGggZD0iTS0yLTJoMjB2MjBILTJ6Ii8+CiAgICAgICAgPHBhdGggZmlsbD0idXJsKCNhKSIgZmlsbC1ydWxlPSJub256ZXJvIiBkPSJNMTUuOTMgNS42MTRoLTIuOTQ4VjQuMTRjMC0uODE4LS42NTUtMS40NzMtMS40NzMtMS40NzNIOC41NmMtLjgxNyAwLTEuNDczLjY1NS0xLjQ3MyAxLjQ3M3YxLjQ3NEg0LjE0Yy0uODE4IDAtMS40NjYuNjU2LTEuNDY2IDEuNDc0bC0uMDA3IDguMTA1YzAgLjgxOC42NTUgMS40NzQgMS40NzMgMS40NzRoMTEuNzljLjgxOCAwIDEuNDc0LS42NTYgMS40NzQtMS40NzRWNy4wODhjMC0uODE4LS42NTYtMS40NzQtMS40NzQtMS40NzR6bS00LjQyMSAwSDguNTZWNC4xNGgyLjk0OHYxLjQ3NHoiIHRyYW5zZm9ybT0idHJhbnNsYXRlKC0yIC0yKSIvPgogICAgPC9nPgo8L3N2Zz4K" alt="">
+                <p class = "mb-1">Sell On Flipkart</p>
+            </div>
+            
+            <div>
+                <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxNSIgaGVpZ2h0PSIxNSIgdmlld0JveD0iMCAwIDE1IDE1Ij4KICAgIDxkZWZzPgogICAgICAgIDxsaW5lYXJHcmFkaWVudCBpZD0iYSIgeDE9IjAlIiB4Mj0iODYuODc2JSIgeTE9IjAlIiB5Mj0iODAuMjAyJSI+CiAgICAgICAgICAgIDxzdG9wIG9mZnNldD0iMCUiIHN0b3AtY29sb3I9IiNGRkQ4MDAiLz4KICAgICAgICAgICAgPHN0b3Agb2Zmc2V0PSIxMDAlIiBzdG9wLWNvbG9yPSIjRkZBRjAwIi8+CiAgICAgICAgPC9saW5lYXJHcmFkaWVudD4KICAgIDwvZGVmcz4KICAgIDxnIGZpbGw9Im5vbmUiIGZpbGwtcnVsZT0iZXZlbm9kZCI+CiAgICAgICAgPHBhdGggZD0iTS0zLTNoMjB2MjBILTN6Ii8+CiAgICAgICAgPHBhdGggZmlsbD0idXJsKCNhKSIgZmlsbC1ydWxlPSJub256ZXJvIiBkPSJNMTAuNDkyIDNDNi4zNTMgMyAzIDYuMzYgMyAxMC41YzAgNC4xNCAzLjM1MyA3LjUgNy40OTIgNy41QzE0LjY0IDE4IDE4IDE0LjY0IDE4IDEwLjUgMTggNi4zNiAxNC42NCAzIDEwLjQ5MiAzem0zLjE4IDEyTDEwLjUgMTMuMDg4IDcuMzI3IDE1bC44NC0zLjYwN0w1LjM3IDguOTdsMy42OS0uMzE1TDEwLjUgNS4yNWwxLjQ0IDMuMzk4IDMuNjkuMzE1LTIuNzk4IDIuNDIyLjg0IDMuNjE1eiIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoLTMgLTMpIi8+CiAgICA8L2c+Cjwvc3ZnPgo=" alt="">
+                <p class = "mb-1"> Adervtise</p>
+            </div>
+            <div>
+                <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxOCIgaGVpZ2h0PSIxNyIgdmlld0JveD0iMCAwIDE4IDE3Ij4KICAgIDxkZWZzPgogICAgICAgIDxsaW5lYXJHcmFkaWVudCBpZD0iYSIgeDE9IjAlIiB4Mj0iODYuODc2JSIgeTE9IjAlIiB5Mj0iODAuMjAyJSI+CiAgICAgICAgICAgIDxzdG9wIG9mZnNldD0iMCUiIHN0b3AtY29sb3I9IiNGRkQ4MDAiLz4KICAgICAgICAgICAgPHN0b3Agb2Zmc2V0PSIxMDAlIiBzdG9wLWNvbG9yPSIjRkZBRjAwIi8+CiAgICAgICAgPC9saW5lYXJHcmFkaWVudD4KICAgIDwvZGVmcz4KICAgIDxnIGZpbGw9Im5vbmUiIGZpbGwtcnVsZT0iZXZlbm9kZCI+CiAgICAgICAgPHBhdGggZD0iTS0xLTFoMjB2MjBILTF6Ii8+CiAgICAgICAgPHBhdGggZmlsbD0idXJsKCNhKSIgZmlsbC1ydWxlPSJub256ZXJvIiBkPSJNMTYuNjY3IDVIMTQuODVjLjA5Mi0uMjU4LjE1LS41NDIuMTUtLjgzM2EyLjQ5NyAyLjQ5NyAwIDAgMC00LjU4My0xLjM3NUwxMCAzLjM1bC0uNDE3LS41NjdBMi41MSAyLjUxIDAgMCAwIDcuNSAxLjY2N2EyLjQ5NyAyLjQ5NyAwIDAgMC0yLjUgMi41YzAgLjI5MS4wNTguNTc1LjE1LjgzM0gzLjMzM2MtLjkyNSAwLTEuNjU4Ljc0Mi0xLjY1OCAxLjY2N2wtLjAwOCA5LjE2NkExLjY2IDEuNjYgMCAwIDAgMy4zMzMgMTcuNWgxMy4zMzRhMS42NiAxLjY2IDAgMCAwIDEuNjY2LTEuNjY3VjYuNjY3QTEuNjYgMS42NiAwIDAgMCAxNi42NjcgNXptMCA2LjY2N0gzLjMzM3YtNWg0LjIzNEw1LjgzMyA5LjAyNWwxLjM1Ljk3NSAxLjk4NC0yLjdMMTAgNi4xNjdsLjgzMyAxLjEzMyAxLjk4NCAyLjcgMS4zNS0uOTc1LTEuNzM0LTIuMzU4aDQuMjM0djV6IiB0cmFuc2Zvcm09InRyYW5zbGF0ZSgtMSAtMSkiLz4KICAgIDwvZz4KPC9zdmc+Cg==" alt="">
+                <p class = "mb-1"> Gift Cards</p>
+            </div>
+            <div>
+                <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxNSIgaGVpZ2h0PSIxNSIgdmlld0JveD0iMCAwIDE1IDE1Ij4KICAgIDxkZWZzPgogICAgICAgIDxsaW5lYXJHcmFkaWVudCBpZD0iYSIgeDE9IjAlIiB4Mj0iODYuODc2JSIgeTE9IjAlIiB5Mj0iODAuMjAyJSI+CiAgICAgICAgICAgIDxzdG9wIG9mZnNldD0iMCUiIHN0b3AtY29sb3I9IiNGRkQ4MDAiLz4KICAgICAgICAgICAgPHN0b3Agb2Zmc2V0PSIxMDAlIiBzdG9wLWNvbG9yPSIjRkZBRjAwIi8+CiAgICAgICAgPC9saW5lYXJHcmFkaWVudD4KICAgIDwvZGVmcz4KICAgIDxnIGZpbGw9Im5vbmUiIGZpbGwtcnVsZT0iZXZlbm9kZCI+CiAgICAgICAgPHBhdGggZD0iTS0yLTNoMjB2MjBILTJ6Ii8+CiAgICAgICAgPHBhdGggZmlsbD0idXJsKCNhKSIgZmlsbC1ydWxlPSJub256ZXJvIiBkPSJNOS41IDNDNS4zNiAzIDIgNi4zNiAyIDEwLjUgMiAxNC42NCA1LjM2IDE4IDkuNSAxOGM0LjE0IDAgNy41LTMuMzYgNy41LTcuNUMxNyA2LjM2IDEzLjY0IDMgOS41IDN6bS43NSAxMi43NWgtMS41di0xLjVoMS41djEuNXptMS41NTMtNS44MTNsLS42NzYuNjljLS41NC41NDgtLjg3Ny45OTgtLjg3NyAyLjEyM2gtMS41di0uMzc1YzAtLjgyNS4zMzgtMS41NzUuODc3LTIuMTIzbC45My0uOTQ1Yy4yNzgtLjI3LjQ0My0uNjQ1LjQ0My0xLjA1NyAwLS44MjUtLjY3NS0xLjUtMS41LTEuNVM4IDcuNDI1IDggOC4yNUg2LjVhMyAzIDAgMSAxIDYgMGMwIC42Ni0uMjcgMS4yNi0uNjk3IDEuNjg4eiIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoLTIgLTMpIi8+CiAgICA8L2c+Cjwvc3ZnPgo=" alt="">
+                <p class = "mb-1"> Help Center</p>
+            </div>
+            <div>
+                <p class = "mb"> © 2007- 2021 Flipkart.com</p>
+            </div>
+            <div>
+                <img src="https://static-assets-web.flixcart.com/www/linchpin/fk-cp-zion/img/payment-method_69e7ec.svg">
+            </div>
+        </div>
+    </div>
+    </div> <!--footer--> 
+
+    <script>
+    var prod;
+    let r_product = window.location.hash.split('=')[1];
+    console.log(r_product);
+      fetch(`http://localhost:2345/products/?_id=${r_product}`).then(function(res){
+      return res.json(); 
+      }).then(function(res){
+        // add(res.records[0].fields);
+        prod = res.products[0];
+        //rob();
+      console.log(prod)
+  
+
+      let container1= document.getElementById("containeri");
+      let container2= document.getElementById("containerd"); 
+
+      //2 accessing what product is selected
+      
+      // let prod=JSON.parse(localStorage.getItem("prods"));
+      var i=prod.image;
+      console.log("prod :",i);
+      // i=i.split(", ").map(String);
+      //console.log(i.length);
+      while(i.length>6){
+        i.pop();
+      }
+      console.log(i.length);
+
+      
+      //3 side image showing
+      let sideimgcontain=document.getElementById("imgcontain");
+      i.forEach((elmt)=>{
+          let divImg=document.createElement("div");
+          divImg.setAttribute("class","divImg");
+  
+          let ImG=document.createElement("img");
+          ImG.setAttribute("class","ImG");
+          ImG.src=elmt;
+          
+          divImg.append(ImG);
+          sideimgcontain.append(divImg);
+  
+  divImg.onmouseenter=function(){
+    changeData(elmt)
+    run();
+  };
+  
+      })  
+  
+      function changeData(f){
+          localStorage.setItem("mainImg",JSON.stringify([]));
+          
+          let IMGmain=JSON.parse(localStorage.getItem("mainImg"));
+  
+          IMGmain.push(f);
+          localStorage.setItem("mainImg",JSON.stringify(IMGmain));
+      }
+  
+      
+      //4 main image showing
+      let mainImgContain=document.getElementById("mainimgcontain");
+
+      let imgM=document.createElement("img");
+      imgM.setAttribute("class","img1");
+      imgM.src=i[0];
+      mainImgContain.append(imgM);
+
+      //When mouse enters any image in the side the run function will work, replacing the mainImg with upon the hovered one
+      function run(){
+      mainImgContain.innerHTML=null;
+      let imagShow=JSON.parse(localStorage.getItem("mainImg"));
+      let img1 = document.createElement("img");
+      img1.setAttribute("class", "img1");   
+
+      if(imagShow[0]!=null){
+        img1.src=imagShow[0];
+      }
+      mainImgContain.append(img1);    
+    }
+  
+     
+      
+      let details = document.createElement("div");
+          details.setAttribute("class", "details");
+      
+  //5 Wishlist button        
+      let wishlist_icon = document.createElement("div");
+          wishlist_icon.innerHTML = `<span class="material-icons">favorite_border </span>`;
+          wishlist_icon.setAttribute("class", "heart");    
+          wishlist_icon.addEventListener("click",function(){
+            addToWishlist();
+          })
+      container1.append(wishlist_icon);    
+      
+  //6 AddCart and BuyNow Buttons
+  let buttons = document.getElementById("containbutton")
+        
+        let Add = document.createElement("button");
+        Add.innerHTML = `<span class="material-icons" style="margin-left:22%; margin-top:6%;">shopping_cart</span><p style="margin-top:8%; font-weight:790"> ADD TO CART</p>`;
+        Add.onclick = function () {
+          addproduct();
+        };
+        
+        let buy = document.createElement("button");
+        buy.innerHTML = `<span class="material-icons" style="margin-left:28%; margin-top:6%;">flash_on</span><p style="margin-top:8%; font-weight:790"> BUY NOW</p>`;
+        buy.onclick = function () {
+          addproduct();
+          window.location.href = "cart.html";
+        };
+        buttons.append(Add, buy);
+  
+  
+  //7 all data on right side
+      
+      let catgory=document.createElement("p");
+      var p=prod.tree;
+      console.log(p);
+      catgory.innerText=p;
+      catgory.setAttribute("class","catgory")
+      
+      let title = document.createElement("p");
+            title.innerText = prod.name;
+      
+      let brand = document.createElement("p");
+      var n=prod.name.trim().split(" ").map(String);
+           brand.innerText = n[0];
+            
+            let Rating_Review_count = document.createElement("div");
+            
+            let rating = document.createElement("div");
+            
+            let Reviews = document.createElement("p");
+            
+            let f_assure = document.createElement("img");
+            f_assure.src ="https://static-assets-web.flixcart.com/www/linchpin/fk-cp-zion/img/fa_62673a.png";
+      
+            if (prod.rating != 0) {
+              rating.innerHTML = Math.round(Math.random()*4+1)+`<span class="material-icons">star_border</span>`;
+              Reviews.innerText = Math.round(Math.random()*100)+" "+"Reviews";
+            }
+      
+            let price = document.createElement("div");
+            
+            let New_price = document.createElement("p");
+            New_price.innerText = `₹ ${prod.discount_price}`;
+            
+            let Old_price = document.createElement("p");
+            Old_price.innerHTML = `<s>₹ ${prod.retail_price}</s>`;
+            
+            let discount_tag = document.createElement("p");
+            
+            if (prod.Old_Price != 0) {
+              let discount =
+                ((prod.retail_price - prod.discount_price) / prod.retail_price) * 100;
+              discount_tag.textContent = Math.floor(discount) + "% Off";
+              discount_tag.style.fontWeight=790;
+            } else {
+              discount_tag.textContent = "";
+              discount_tag.style.display = "none";
+            }
+      
+            price.append(New_price, Old_price, discount_tag);
+            price.setAttribute("class", "price");
+            
+            Rating_Review_count.append(rating, Reviews, f_assure);
+            Rating_Review_count.setAttribute("class", "rev_rat");
+            
+            let offers = document.createElement("div");
+            offers.setAttribute("class", "offers");
+            
+            let available = document.createElement("p");
+            available.textContent = "Available offers";
+            
+            let a_offers = document.createElement("ul");
+            let str = `<li><span class="material-icons">sell</span><p style=" font-size:18px;"> Flipkart Pay Later</p></li>
+              <li><span class="material-icons">sell</span><p><b style = "font-weight:790; font-size:18px;">Bank Offer</b>  5% Unlimited Cashback on Flipkart Axis Bank Credit Card</p></li>
+              <li><span class="material-icons">sell</span><p><b style = "font-weight:790; font-size:18px;">Bank Offer</b>  15% Instant discount on first Pay Later order of ₹500 and above</p></li>
+              <li><span class="material-icons">sell</span><p><b style = "font-weight:790; font-size:18px;">Partner Offer</b>  Buy and Get Free 6 months Gaana Plus Subscription</p></li>
+              <li><span class="material-icons">event_available</span><p>No Cost EMI on Bajaj Finserv EMI Card on cart value above ₹2999</p></li>`;
+            a_offers.innerHTML = str;
+      
+            offers.append(available, a_offers);
+    
+            
+            let highlights = document.createElement("div");
+            
+            let key = document.createElement("p");//hi
+            key.textContent = "Description";
+
+            let specs = document.createElement("ul");// highlights
+            specs.setAttribute("class", "specs");
+            specs.textContent=prod.description;
+            
+            let ser = document.createElement("p");
+            ser.innerText = "Services";
+            
+            let services_offer = document.createElement("ul");
+            services_offer.setAttribute("class", "services_offer");
+            
+            let string = `<li><span class="material-icons">verified_user</span><p>  1 Year Warranty from the Date of Purchase</p></li>
+              <li><span class="material-icons">autorenew</span><p>  7 Days Replacement Policy</p></li>
+              <li><span class="material-icons">currency_rupee</span><p>  Cash on Delivery available</p></li>`;
+            services_offer.innerHTML = string;
+            
+            highlights.append(key, specs, ser, services_offer);
+            highlights.setAttribute("class", "highlights");
+            
+            let del = document.createElement("div");
+            del.setAttribute("class", "del");
+            
+            let delivery = document.createElement("p");
+            delivery.innerText = "Delivery";
+            
+            let pincode = document.createElement("div");
+            pincode.innerHTML = `<span class="material-icons">room</span><input id="pin" type = "text" placeholder = "Enter Delivery Pincode"><p onclick = "checkPincode()">Check</p>`;
+            
+            let delivery_date = document.createElement("p");
+            
+            let del_cond = document.createElement("p");
+            del_cond.setAttribute("class", "del_cond");
+            
+            del.append(delivery, pincode);
+            
+            details.append(catgory,brand,title,Rating_Review_count,price,offers,del,delivery_date,del_cond,highlights);
+            container2.append(details);
+      
+
+            
+//8 All functions       
+      async function checkPincode() {
+          let input = document.querySelector(".del > div input").value;
+          let resM = await fetch(`https://api.postalpincode.in/pincode/${input}`);
+          let address = await resM.json();
+          var currentDate = new Date();
+          var day = currentDate.getDate() + 2;
+          var month = currentDate.getMonth() + 1;
+          const monthNames = ["Jan","Feb","Mar","Apr","May","June","July","Aug","Sep","Oct","Nov","Dec"];
+          delivery_date.innerHTML = `Will be delivered to <b style = "font-weight:590"> ${address[0].PostOffice[0].Name},${address[0].PostOffice[0].District} by ${day} ${monthNames[month - 1]}</b>`;
+          del_cond.textContent = `if ordered before by 11:45 PM`;
+        }
+  
+
+        
+        function addToWishlist(){//Double click to add
+
+          let heart_button = document.querySelector('.heart');
+
+          console.log(prod._id);
+          fetch(`http://localhost:2345/wishlist`).then(function(res){
+          return res.json(); 
+          }).then(function(res){
+            let data = res.wishlist;
+            console.log("wishlist :",data);
+            if(data.length == 0)
+            {
+              fetch("http://localhost:2345/wishlist", {
+                method: "POST",
+                body: JSON.stringify({product: prod,}),
+                headers: {"Content-type": "application/json; charset=UTF-8"}
+                }).then(res => {
+                  alert(`${prod.name} is added to your wishlist`);
+                  heart_button.style.color="red";
+                });
+            }
+            else{
+              data.forEach((el)=>{
+                if(el.product._id == prod._id)
+                {
+                  fetch("http://localhost:2345/wishlist/"+ el._id, {
+                  method: "DELETE",
+                  headers: {"Content-type": "application/json; charset=UTF-8"}
+                  }).then(res => {
+                    console.log("Request complete! response:", res);
+                    heart_button.style.color="grey";
+                    alert(`${prod.name} is removed from your wishlist`);
+                  });
+                }
+                else{
+                  fetch("http://localhost:2345/wishlist/", {
+                  method: "POST",
+                  body: JSON.stringify({product: prod._id,}),
+                  headers: {"Content-type": "application/json; charset=UTF-8"}
+                  }).then(res => {
+                    console.log("Request complete! response:", res);
+                    alert(`${prod.name} is added to your wishlist`);
+                    heart_button.style.color="red";
+                  });
+                }
+              });
+            }
+          })          
+        }
+  
+        function addproduct(){
+          
+          fetch("http://localhost:2345/cart", {
+          method: "POST",
+          body: JSON.stringify({product: prod,}),
+          headers: {"Content-type": "application/json; charset=UTF-8"}
+          }).then(res => {
+            alert(`${prod.name} is added to your cart`);
+          });
+        }
+      
+      });
+// function add(d){ 
+
+// //if(localStorage.getItem("prods")===null){
+//     localStorage.setItem("prods",JSON.stringify([]))
+// //}
+
+
+
+// let prod_data={
+//      category:d.category ,
+//      description:d.description,
+//      discount_price:d.discount_price,
+//      image:d.image,
+//      name:d.name,
+//      rating:d.rating,
+//      retail_price:d.retail_price,   
+//      tree:d.tree,
+// }
+
+// let data=JSON.parse(localStorage.getItem("prods"));
+
+// data.push(prod_data);
+// localStorage.setItem("prods",JSON.stringify(data));
+
+// }  
+
+let checkin = document.querySelector(".login");
+let abc = localStorage.getItem("flag1");
+if(abc)
+{
+  checkin.innerText = "Vasu";
+}
+
+  </script>   
+
+</body>
+</html>

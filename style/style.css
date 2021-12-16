@@ -1,0 +1,570 @@
+body{
+    background-color: #f1f3f6;
+    font-family: 'Roboto',Arial, sans-serif;
+    margin: 0px;
+    padding: 0px;
+}
+/* CSS styling for navbar */
+.navbar{
+    background-color: #2874f0;
+    display: flex;
+    justify-content: space-between;
+    color: azure;
+    z-index: 1;
+    height: 56px;
+    text-align: center;
+    width: 100vw;
+    /* margin: -9px; */
+    /* margin-right: 0px; */
+}
+.navbar > :nth-child(1)
+{
+    display: flex;
+    width: 65%;
+    margin-left: 10%;
+    justify-content: space-between;
+}
+.navbar > :nth-child(1) a{
+    color: inherit;
+    margin-top: 1%;
+}
+.logo{
+    cursor: pointer;
+    width: 10%;
+}
+.logo > img{
+    width: 75px;
+    margin-top: auto;
+
+}
+.caption{
+    display: flex;
+    vertical-align: middle;
+    margin-right: 1%;
+}
+.caption > img{
+    width: 10px;
+    height: 10px;
+}
+.caption > :nth-child(1) > :nth-child(2)
+{
+    color: #ffe11b;
+}
+.caption > :nth-child(1)
+{
+    margin-top: -20px;
+}
+.navbar > :nth-child(1) > :nth-child(2){
+    width: 80%;
+}
+.navbar > :nth-child(1) > :nth-child(2) > div
+{
+    display:flex;
+    margin-top: 1%;
+    width: 100%;
+}
+.flex{
+    display: flex;
+    vertical-align: baseline;
+    margin-top: 4%;
+}
+#searchbox{
+    min-width: 90%;
+    border: none;
+    padding-left: 3%;
+    height: 29px;
+    font-size: larger;
+}
+#searchbox:focus{
+    outline-width: 0;
+}
+#search_icon{
+    color: #2874f0;
+    background-color: white;
+    height: 25px;
+    padding: 3.1px;
+    cursor: pointer;
+}
+#output{
+    display: none;
+    z-index: 1;
+    background-color: #fff;
+    border: 1px solid #f1f3f6;
+    box-shadow: 0 0 8px 4px hsl(0deg 0% 78% / 21%);
+    width: 97.4%;
+    margin-top: 1px;
+    padding-left: 0px;
+    height: max-content;
+    max-height: 500%;
+    overflow-y: scroll;
+    position: relative;
+}
+#output::-webkit-scrollbar{
+    display: none;
+}
+#output li{
+    color: black;
+    padding-left: 3%;
+    font-weight: 400;
+    text-align: left;
+    list-style: none;
+    padding: 13px;
+    cursor: pointer;
+}
+#output li:hover{
+    background-color: #f1f3f6;
+}
+.navbar > :nth-child(2)
+{
+    display: flex;
+    justify-content: space-around;
+    width: 25%;
+    margin-right: 8%;
+    margin-left: 4%;
+    font-size: larger;
+    margin-top: 0.4%;
+}
+.material-icons{
+    margin-top: 1%;
+}
+.navbar input{
+    margin-top: 1%;
+    height: 61%;
+}
+.login_div{
+    width: 25%;
+    background-color: white;
+    color: #2874f0;
+    padding: 1%;
+    height: 40%;
+    margin-top: 3%;
+    cursor: pointer;
+    padding-bottom: 2%;
+}
+.login{
+    margin-top: auto;
+}
+.more{
+    margin-top: 8px;
+}
+.text{
+    margin-top: 3%;
+    cursor: pointer;
+}
+.image{
+    display: flex;
+}
+.navbar>div>:last-child{
+    color: inherit;
+    margin-top: inherit;
+}
+.navbar>div>:last-child>div{
+    margin-top: 10px;
+}
+/* CSS styling for dropdown */
+.dropdown, .login_dropdown{
+    display: none;
+    position: fixed;
+    z-index: 1;
+    min-width: 18%;
+    list-style-type:none;
+    background-color: white;
+    margin-left: -7%;
+    padding-left: 0px;
+    margin-top: -0.6%;
+    box-shadow: 0 0 8px 4px hsl(0deg 0% 78% / 21%);
+}
+.login_dropdown{
+    margin-left: -7%;
+}
+.login_dropdown b{
+    font-weight: 500;    
+}
+.signup{
+    margin-left: 40px;
+    color: #2874f0;
+}
+.login_dropdown a{
+    text-decoration: none;
+    margin-left: none;
+}
+.login_div:hover .login_dropdown,
+.more:hover .dropdown{
+    display: block;
+}
+.dropdown li, .login_dropdown li{
+    display: block;
+    color: black;
+    text-align: left;
+    margin-left: 1px;
+    border: .5px solid #f1f3f6;
+    background-color: white;
+    padding: 3%;
+    cursor: pointer;
+}
+.login_dropdown li:hover, .dropdown li:hover{
+    background-color: #f1f3f6;
+}
+.dropdown li span, .login_dropdown li span{
+    color: #2874f0;
+}
+.login_dropdown a:hover{
+    text-decoration: none;
+}
+.signup:hover{
+    text-decoration: underline;
+}
+.dropdown:after, .login_dropdown:after{
+    content: ' ';
+    width: 0px;
+    height: 0px;
+    border-top: 10px solid transparent;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-bottom: 10px solid white;
+    bottom: 100%;
+    left: 50%;
+    margin-right: -10px;
+    position: absolute;
+}
+#signup{
+    display: flex;
+    vertical-align: baseline;
+    justify-content: space-around;
+    height: 30px;
+    margin-bottom: 5px;
+}
+/* CSS styling for slideshow */
+.slideshow_container{
+    overflow: hidden;
+    max-width: 100vw;
+    position: relative;
+    margin-top: 0.5%;
+}
+.slideshow_container .mySlides,
+.slideshow_container .mySlides--hidden{
+    display: none;
+}
+.slideshow_container .mySlides img{
+    max-width: 100vw;
+    height: auto;
+    max-width: 100%;
+}
+.slideshow_container .mySlides--visible{
+    display: block;
+    animation: fadeVisibility 0.5s;
+}
+.slideshow_container .actions{
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+}
+.slideshow_container .actions a{
+    font-size: xx-large;
+    border-radius: 50px;
+    border: none;
+}
+.slideshow_container .actions a#prev{
+    margin-left: 20px;
+}
+.slideshow_container .actions a#next{
+    margin-right: 20px;
+}
+
+@keyframes fadeVisibility{
+    0%{
+        opacity: 0;
+    }
+    100%{
+        opacity: 1;
+        transform: opacity linear;
+    }
+}
+
+/* CSS Styling for categories */
+.categories{
+ justify-content: center;
+ background-color: white;
+ align-items: center;
+ margin-top: -10px;
+}
+.categories a{
+    color: inherit;
+}
+.categories>div>a:hover{
+    color: #2874f0;
+}
+.categories>div{
+    margin: 10px 10% auto 10%;
+   display: flex;
+   justify-content: space-between;
+}
+.categories p{
+    margin-top: 0px;
+}
+.categories>div>a{
+    cursor: pointer;
+    margin-top: inherit;
+}
+.categories>div>a:nth-child(7) img,.categories>div>a:nth-child(5) img{
+    margin-left: 12px;
+}
+.categories>div>a:nth-child(6) p{
+    margin-left: 5px;
+}
+.categories>div>a:nth-child(8) img{
+    margin-left: -7px;
+}
+.categories>div>a:last-child img{
+    margin-left: 40px;
+}
+.categories img{
+    width: 50px;
+    height: 50px;
+}
+/* CSS STYling for carousels */
+.item a{
+    color: inherit;
+}
+.C_heading{
+    background-color: white;
+    padding: 25px;
+    margin-top: 5px;
+    font-weight: 500;
+    font-size: 22px;
+    line-height: 32px;
+    box-shadow: 0 2px 4px 0 rgb(0 0 0 / 8%);
+}
+.C_heading p{
+    margin: 0;
+}
+.slider1,.slider2,.slider3{
+    background-color: white;
+    margin-top: 5px;
+    height: 450px;
+    box-shadow: 2px 4px 0 rgb(0 0 0 / 8%)
+}
+.slider1{
+    width: 75%;
+    display: inline-block !important;
+}
+.banner{
+    display: inline-block;
+    width: 23.42%;
+    height: 457px;
+    margin: 0.2% 0.2% auto 0.2%;
+    vertical-align: top;
+    cursor: pointer;
+}
+.box:hover .slide-img img{
+    transform: scale(1.03);
+}
+.box{
+    width: 250px;
+    transition: transform 0.7s;
+    margin-top: 30px;
+    cursor: pointer;
+}
+.slide-img{
+    height: 250px;
+    position: relative;
+}
+.slide-img img{
+    width: 100%;
+    height: 100%;
+    margin-top: 2%;
+    object-fit: contain;
+    box-sizing: border-box;    
+}
+.detail-box{
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    box-sizing: border-box;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+.type p{
+    color: #222222;  
+}
+.box:hover .type p{
+    color: #2874f0;
+}
+.type span{
+    color: rgba(26, 26, 26, 0.5);
+}
+.rating{
+    display: flex;
+    justify-content: center;
+    vertical-align: middle;
+    height: 30px;
+}
+.rating>div:first-child{
+    margin-right: 15px;
+    background-color: #388e3c;
+    color: #fff;
+    border-radius: 5px;
+    display: flex;
+    margin-top: 13px;
+    height: 21px;
+    padding: 2px;
+}
+.rating > div span{
+    margin-top: 0px;
+    font-size: 20px;
+}
+.rating>div P{
+    margin: 0px;
+}
+.rating>p{
+    color: grey;
+}
+.price{
+    display: flex;
+    justify-content: space-around;
+    font-size: 1.1rem;
+    font-family: poppins;
+    letter-spacing: 0.5px;
+}
+.price>p:first-child{
+    font-weight: 600;
+}
+p>s{
+    color: grey;
+}
+.price>p:last-child{
+    color: #388e3c;
+}
+.slider1{
+    position: relative;
+}
+.prev-arrow{
+    width: 50px;
+    height: 50px;
+    background-color: white;
+    border-radius: 2px;
+    text-align: center;
+    cursor: pointer;
+    position: absolute;
+    bottom: 50%;
+    font-size: xxx-large !important;
+    left: 3%;
+    box-shadow: 0px 1px 10px 0 rgba(32, 34, 39, 0.4);
+    z-index: 1;
+}
+.next-arrow{
+    width: 50px;
+    height: 50px;
+    background-color: white;
+    font-size: xxx-large !important;
+    border-radius: 2px;
+    text-align: center;
+    box-shadow: 0px 1px 10px 0px rgba(32, 34, 39, 0.4);
+    display: inline-block;
+    line-height: 50px;
+    cursor: pointer;
+    position: absolute;
+    bottom: 50%;
+    right: 3%;
+}
+/* For Webpages not available */
+.caution{
+    width: max-content;
+    margin: auto;
+}
+.block{
+    background-color: white;
+    height: 92vh;
+}
+.caution img{
+    margin-top:20%;
+    width: 700px;
+}
+.caution p{
+    text-align: center;
+    font-size: x-large;
+    color: #2874f0;
+    font-weight: 500;
+    margin-left: -40px;
+}
+/* Flipkart info */
+.flipkart_info{
+    color: #878787;
+    /* margin: 10px; */
+    padding-left: 25px;
+    padding-top: 10px;
+    background-color: #fff;
+    margin-top: 50px;
+}
+.flipkart_info h1{
+    font-size: 16px;
+}
+.flipkart_info h2{
+    font-size: 14px;
+}
+.flipkart_info p{
+    font-size: 11px;
+    line-height: 16px;
+}
+/* Footer */
+.foot{
+    background-color: #172337;
+}
+.container{
+    display: block;
+    align-items: center;
+    margin-bottom: 0px;
+    padding-top: 40px;
+}
+.container > .row{
+    display: flex;
+    justify-content: center;
+}
+.container > .row > .col-md-7
+{    
+    width: 60%;
+}
+.inner_row{
+    display: flex;
+    justify-content: space-evenly;
+}
+.heading{
+    color: #878787;
+    font-size: 12px;
+}
+.mb-1{
+    color: #fff;
+    cursor: pointer;
+    font-size: 12px;
+}
+.mb{
+    color: #fff;
+    font-size: 12px;
+}
+.inner_row a{
+    color: #2874f0;
+    font-size: 12px;
+}
+.inner_row .mb-1:hover{
+    text-decoration: underline;
+}
+.container > .row > .col-md-5{
+    width: 40%;
+}
+.flex_footer{
+    display: flex;
+    justify-content: space-around;
+}
+.flex_footer >div{
+    display: flex;
+    vertical-align: middle;
+}
+hr{
+    margin: 0px;
+    border-width: 0.25px;
+    color: #878787;
+}
+

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Webpage under building</title>
+    <link rel="stylesheet" href="./style/style.css" />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+</head>
+<body>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet"/>
+    <div class="navbar"></div>
+    <div class="block">
+        <div class="caution">
+            <img src="https://images.squarespace-cdn.com/content/v1/53ee3064e4b05a8690c4fbcd/1568839643495-D11V6KR4864F03Q47N2I/ke17ZwdGBToddI8pDm48kAOBecOXkrBcUqju8drhofVZw-zPPgdn4jUwVcJE1ZvWQUxwkmyExglNqGp0IvTJZUJFbgE-7XRK3dMEBRBhUpyhIHnkvHbtErWGeA7sYEzv4xZMDhJRYPu38Yx5IHKTUoghIQ-bvednEHZkexBkUJQ/OneDayBuildSite2_Loop.gif"/>
+            <p>Sorry for the inconvenience, this webpage is currently under development.</p>
+        </div>
+    </div>
+</body>
+</html>
+<script type="module">
+  import navbar from "./components/navbar.js";
+// Navbar Functionality start
+  let nbar = document.querySelector(".navbar");
+  nbar.innerHTML = navbar();
+  let login_btn = document.querySelector(".login");
+  let login_drop = document.querySelector(".login_dropdown");
+  login_btn.onclick = function () {};
+  let more = document.querySelector(".more");
+  let micon = document.getElementById("micon");
+  more.onmouseenter = function(){
+    micon.innerText = "arrow_drop_up";
+  }
+  more.onmouseleave = function(){
+    micon.innerText = "arrow_drop_down";
+  }
+  let searchbar = document.getElementById("searchbox");
+  let output = document.getElementById("output");
+  searchbar.oninput = function(){
+    debounce(search,2000);
+  }
+</script>
