@@ -12,9 +12,11 @@ app.use(cors());
 
 app.use(express.json());
 
+var distDir = __dirname + "/dist/";
+app.use(express.static(distDir));
+
 
 app.use("/products",ProductController);
-app.use("/product",ProductController);
 app.use("/cart",CartController);
 app.use("/wishlist",wishlistController);
 

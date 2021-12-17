@@ -2,23 +2,16 @@ function search(){
     let q = document.getElementById("searchbox").value;
     if(q != "")
     {
-        fetch("http://localhost:2345/products").then(function(res){
+        fetch("https://flipkart-dummy-server.herokuapp.com/products").then(function(res){
         return res.json(); 
         }).then(function(res){
-            var list=res["records"];
-            var ar=[];
-            list.forEach((item)=>{
-                var temp=item.fields.name;
-                if(temp != undefined)
-                {
-                    ar.push(temp);                        
-                }
-            });
+            console.log(res);
+            var list=res.products;
             let matching = [];
             let myPattern = new RegExp('(\\w*'+q+'\\w*)','gi');
-            ar.forEach(el=>
+            list.forEach(el=>
             {
-                if(el.match(myPattern))
+                if(el.name.match(myPattern))
                 {
                     matching.push(el);
                 }
@@ -54,11 +47,12 @@ function displayResults(p)
 {
     output.innerHTML = null;
     output.style.display = "block";
+    console.log(p);
     p.forEach(element => {
         let name = document.createElement('li');
         let anchor = document.createElement('a');
-        anchor.href = `./product.html#product=${element}`;
-        anchor.innerText = element;
+        anchor.href = `./product.html#id=${element._id}`;
+        anchor.innerText = element.name;
         name.append(anchor);
         output.append(name);
     });

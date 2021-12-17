@@ -190,11 +190,12 @@
     var prod;
     let r_product = window.location.hash.split('=')[1];
     console.log(r_product);
-      fetch(`http://localhost:2345/products/?_id=${r_product}`).then(function(res){
+      fetch(`https://flipkart-dummy-server.herokuapp.com/products/${r_product}`).then(function(res){
       return res.json(); 
       }).then(function(res){
         // add(res.records[0].fields);
-        prod = res.products[0];
+      console.log(res);
+        prod = res.products;
         //rob();
       console.log(prod)
   
@@ -434,14 +435,14 @@
           let heart_button = document.querySelector('.heart');
 
           console.log(prod._id);
-          fetch(`http://localhost:2345/wishlist`).then(function(res){
+          fetch(`https://flipkart-dummy-server.herokuapp.com/wishlist`).then(function(res){
           return res.json(); 
           }).then(function(res){
             let data = res.wishlist;
             console.log("wishlist :",data);
             if(data.length == 0)
             {
-              fetch("http://localhost:2345/wishlist", {
+              fetch("https://flipkart-dummy-server.herokuapp.com/wishlist", {
                 method: "POST",
                 body: JSON.stringify({product: prod,}),
                 headers: {"Content-type": "application/json; charset=UTF-8"}
@@ -454,7 +455,7 @@
               data.forEach((el)=>{
                 if(el.product._id == prod._id)
                 {
-                  fetch("http://localhost:2345/wishlist/"+ el._id, {
+                  fetch("https://flipkart-dummy-server.herokuapp.com/wishlist/"+ el._id, {
                   method: "DELETE",
                   headers: {"Content-type": "application/json; charset=UTF-8"}
                   }).then(res => {
@@ -464,7 +465,7 @@
                   });
                 }
                 else{
-                  fetch("http://localhost:2345/wishlist/", {
+                  fetch("https://flipkart-dummy-server.herokuapp.com/wishlist/", {
                   method: "POST",
                   body: JSON.stringify({product: prod._id,}),
                   headers: {"Content-type": "application/json; charset=UTF-8"}
@@ -481,7 +482,7 @@
   
         function addproduct(){
           
-          fetch("http://localhost:2345/cart", {
+          fetch("https://flipkart-dummy-server.herokuapp.com/cart", {
           method: "POST",
           body: JSON.stringify({product: prod,}),
           headers: {"Content-type": "application/json; charset=UTF-8"}

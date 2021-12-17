@@ -109,7 +109,7 @@
   let prod;
   function wishproducts(){
     const array = [];
-    fetch(`http://localhost:2345/wishlist/`).then(function(res){
+    fetch(`https://flipkart-dummy-server.herokuapp.com/wishlist/`).then(function(res){
       return res.json(); 
       }).then(function(res){
         console.log(res.wishlist);
@@ -195,7 +195,7 @@
   function removeWP(p)
   {
     console.log(p._id);
-    fetch("http://localhost:2345/wishlist/"+ p._id, {
+    fetch("https://flipkart-dummy-server.herokuapp.com/wishlist/"+ p._id, {
     method: "DELETE",
     headers: {"Content-type": "application/json; charset=UTF-8"}
     }).then(res => {

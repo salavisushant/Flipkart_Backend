@@ -1,6 +1,6 @@
 function seggregate(q,parent)
 {
-    fetch(`http://localhost:2345/products/${q}`).then(function(res){
+    fetch(`https://flipkart-dummy-server.herokuapp.com/products/category/${q}`).then(function(res){
    return res.json(); 
   }).then(function(res){
       showcarousel(res.products,parent);
