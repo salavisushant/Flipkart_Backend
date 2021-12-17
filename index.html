@@ -206,10 +206,16 @@ window.addEventListener('click',()=>{
 })
 
 let checkin = document.querySelector(".login");
-let abc = localStorage.getItem("flag1");
-if(abc)
+let dropdown = document.querySelector(".login_dropdown");
+console.log(dropdown);
+if(localStorage.getItem("token"))
 {
-  checkin.innerText = "Vasu";
+  checkin.innerText = JSON.parse(localStorage.getItem("token")).user.username;
+  checkin.style.color= "white";
+  let logindiv = document.querySelector(".login_div");
+  logindiv.style.backgroundColor = "inherit";
+  dropdown.innerHTML += `<li><span class="material-icons">power_settings_new</span>Logout</li>`;
+  dropdown.lastChild.addEventListener("click",()=>{logout()});
 }
 // page_info
 let info = document.querySelector(".flipkart_info")
@@ -217,4 +223,10 @@ info.innerHTML = Flipkartinfo();
 // Footer 
 let foot = document.querySelector('.foot');
 foot.innerHTML = footer();
+function logout(){
+  console.log("you logoutted");
+  localStorage.removeItem("token");
+  location.reload();
+}
+
 </script>

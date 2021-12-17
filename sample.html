@@ -102,12 +102,12 @@ img{
 
                 <div id="login_right">
                     <div id="l">
-                    <label>Enter Email/Mobile number</label><br>
-                    <input id="logemail"type="text"><br>
+                    <label>Enter Email</label><br>
+                    <input id="emaill"type="text"><br>
                     <label>Enter Password</label><br>
-                    <input id="logpass"type="password"><br>
+                    <input id="passl"type="password"><br>
                     <label>By continuing, you agree to Flipkart's Terms of Use and Privacy Policy.</label>
-                    <button onclick="getdata()"style="background-color:orange;color:white;margin-bottom:4%;">Login</button>
+                    <button onclick="login()"style="background-color:orange;color:white;margin-bottom:4%;">Login</button>
 
                     <label style="margin:48%;margin-bottom:5%;color:grey;"> OR </label>
                     <button style="background-color:white;color:blue;margin-bottom:4%;border:1px solid grey">Request OTP</button>
@@ -117,20 +117,15 @@ img{
                     </div>
 
                     <div id="ls">
+                        <label>Enter Username</label><br>
+                        <input id="userr" type="text"/><br>
                         <label>Enter Email</label><br>
-                        <input id="mob" type="text"/><br>
-                        <div id="otpbox">
-                            <label> OTP sent to Email</label><br><br>
-                            <label>Enter OTP</label><br>
-                            <input id="otp" type="text"/><br>
-                            <label>Set password</label><br>
-                            <input id="pass" type="password"/><br>
-                        </div>
+                        <input id="emailr" type="text"/><br>
+                        <label>Enter New Password</label><br>
+                        <input id="passr" type="password"/><br>
                         <label>By continuing, you agree to Flipkart's Terms of Use and Privacy Policy.</label><br>
-                        <button id="botp" style="background-color:orange;color:white;margin-bottom:4%;"onclick="sendotp()">Continue</button>
-                        <button id="bosign" style="background-color:orange;color:white;margin-bottom:4%;"onclick="verify()">Signup</button>
-
-                        <button onclick="login()" style="background-color:white;color:blue;margin-bottom:4%;border:1px solid grey">Existing User? Login</button>
+                        <button id="botp" style="background-color:orange;color:white;margin-bottom:4%;"onclick="register()">Continue</button>
+                        <button onclick="loginpage()" style="background-color:white;color:blue;margin-bottom:4%;border:1px solid grey">Existing User? Login</button>
                         
                     </div>
                 </div>
@@ -140,6 +135,62 @@ img{
 
     <!-- <img src="https://i.postimg.cc/PJ2p28NT/Screenshot-160.jpg" style="width:100%;object-fit:contain"/> -->
 </body>
+<script>
+    var l_image=document.getElementById("im");
+var ldw=document.getElementById("l");
+var lds=document.getElementById("ls");
+    function signup(){
+
+l_image.src="https://i.postimg.cc/DfRPYFWJ/q222.png";
+ldw.style.display="none";
+lds.style.display="block";
+
+}
+
+function loginpage(){
+
+    l_image.src="https://i.postimg.cc/xTCvxhCN/q111.png";
+ldw.style.display="block";
+lds.style.display="none";
+}
+function register(){
+    let data = {
+        email : document.getElementById("emailr").value,
+        password : document.getElementById("passr").value,
+        username : document.getElementById("userr").value,
+    }
+    fetch("https://flipkart-dummy-server.herokuapp.com/register",{
+        method : "POST",
+        body : JSON.stringify(data),
+        headers : {"content-type" : "application/json"}
+    }).then((res)=>{
+        res.json();
+    }).then((res)=>{
+        alert("user successfully registered");
+        loginpage();
+    }).catch((e)=>{
+        alert("Error :",e);
+    });
+}
+function login(){
+    let data = {
+        email : document.getElementById("emaill").value,
+        password : document.getElementById("passl").value,
+    }
+    fetch("https://flipkart-dummy-server.herokuapp.com/login",{
+        method : "POST",
+        body : JSON.stringify(data),
+        headers : {"content-type" : "application/json"}
+    }).then((res)=>{
+        return res.json();
+    }).then((res)=>{
+        console.log(res);
+        localStorage.setItem("token",JSON.stringify(res));
+        alert("user successfully Loggedin");
+        window.location.href = "index.html";
+    });
+}
+</script>
 <script type="module">
   import navbar from "./components/navbar.js";
   import {footer,Flipkartinfo} from "./components/footer.js";
@@ -166,128 +217,7 @@ info.innerHTML = Flipkartinfo();
 // Footer 
 let foot = document.querySelector('.foot');
 foot.innerHTML = footer();
-var l_image=document.getElementById("im");
-var ldw=document.getElementById("l");
-var lds=document.getElementById("ls");
-//getdata();
-//createuser();
-var otpq=0;
 
-function verify(){
-var tempotp=document.getElementById("otp").value;
-if(tempotp==otpq)
-createuser();
-else
-alert("wrong otp");
-
-}
-// sends and verifies otp
-function sendotp(){
-var mobil=document.getElementById("mob").value;
-var otpb=document.getElementById("otpbox");
-otpb.style.display="block";
- otpq= Math.floor(Math.random() * 900000)+ 100000;
-var con=document.getElementById("botp");
-var signn=document.getElementById("bosign");
-
-con.style.display="none";
-signn.style.display="block";
-
-fetch(`https://maker.ifttt.com/trigger/flipk/with/key/gZwHGvakwN95-oS8eLLlSi8M9-uWFx_6zz_6JOCxvky?value1=${mobil}&value2=${otpq}`).then(function(res){
-      // alert("success");
-      return res.json();
-    }).then(function(res){
-      
-    //  alert("success");
-      console.log(res);
-    }).catch(function(err){
-    console.log(err); 
-   });
-
-}
-
-
-//end ofsendotp
-
-
-function signup(){
-
-l_image.src="https://i.postimg.cc/DfRPYFWJ/q222.png";
-ldw.style.display="none";
-lds.style.display="block";
-
-}
-
-function login(){
-
-    l_image.src="https://i.postimg.cc/xTCvxhCN/q111.png";
-ldw.style.display="block";
-lds.style.display="none";
-
-}
-
-var objl={};
-function getdata(){
-
-   fetch("https://api.airtable.com/v0/app4CFWVkre4wPSBz/Table%201?",{
-    method:'GET',
-    headers:{'Authorization':'Bearer keyIkILcyVWkPItLt'}
-    
-  }).then(function(res){
-   return res.json(); 
-  }).then(function(res){
-      var record=res.records;
-
-       for(k in record)
-       objl[record[k].fields.email]=record[k].fields.password;
-       //console.log(objl);
-       var lem=document.getElementById("logemail").value;
-       var lpas=document.getElementById("logpass").value;
-       if(objl[lem]==lpas)
-       {alert("login successful");
-       window.location.href = "index.html";
-       localStorage.setItem("flag1",1);
-  }
-       else
-       alert("Username or password is incorrect");
-});
-     
-}
-
-//creates new user in the database
-function createuser(){
-
-var user=document.getElementById("mob").value;
-var passw=document.getElementById("pass").value;
-
-
-var obj={
-    "records": [
-        {
-            
-            "fields": {
-                "password": passw,
-                "email": user
-            }
-            
-        }
-    ]
-};
-obj=JSON.stringify(obj);
-fetch("https://api.airtable.com/v0/app4CFWVkre4wPSBz/Table%201?",{
-    method:'POST',
-    headers:{'Authorization':'Bearer keyIkILcyVWkPItLt',
-             'Content-Type':'application/json'},
-    body: obj,
-    
-  }).then(function(res){
-   return res.json(); 
-  }).then(function(res){
-    console.log(res);
-    alert("account created successfully");});
-
-}
-//end of createnewuser
 </script>
 
 

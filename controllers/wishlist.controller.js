@@ -4,9 +4,16 @@ const Wishlist = require("../models/wishlist.model");
 
 const router = express.Router();
 
-router.post("",async(req,res)=>{
+const authenticate = require("../middlewares/authenticate")
+
+router.post("",authenticate,async(req,res)=>{
     try{
-        const wishlist = await Wishlist.create(req.body);
+        const user = req.user;
+
+        const wishlist = await Wishlist.create({
+            product : req.body.product,
+            user_id : user.user._id,
+        });
 
         res.status(201).json({wishlist});
     }catch(e){
@@ -14,9 +21,9 @@ router.post("",async(req,res)=>{
     }
 });
 
-router.get("",async(req,res)=>{
+router.get("/:id",authenticate,async(req,res)=>{
     try{
-        const wishlist = await Wishlist.find({},{product : 1}).populate("product").lean().exec();
+        const wishlist = await Wishlist.find({user_id : req.params.id}).populate("product").lean().exec();
 
         res.status(201).json({wishlist});
     }catch(e){
@@ -24,7 +31,7 @@ router.get("",async(req,res)=>{
     }
 });
 
-router.delete("/:id",async(req,res)=>{
+router.delete("/:id",authenticate,async(req,res)=>{
     try{
         const wishlist = await Wishlist.findByIdAndDelete(req.params.id).lean().exec();
 

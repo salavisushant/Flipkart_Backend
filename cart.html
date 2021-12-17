@@ -458,7 +458,7 @@
         </div>
         <div>
             <div class="dropdown">
-                <button style="margin-right: 10%;" class="dropbtn">vasu</button>
+                <button style="margin-right: 10%;" class="dropbtn">LOGIN</button>
                 <div class="dropdown-content">
                   <a href="#">My Profile</a>
                   <a href="#">SuperCoin Zone</a>
@@ -469,7 +469,7 @@
                   <a href="#">Coupons</a>
                   <a href="#">Gift Cards</a>
                   <a href="#">Notifications</a>
-                  <a href="#">Logout</a>
+                  <a onclick="logout()">Logout</a>
                 </div>
               </div>
         </div>
@@ -533,10 +533,16 @@
 </html>
 
 <script>
+    let user = document.querySelector(".dropbtn");
+    user.innerText = JSON.parse(localStorage.getItem("token"))?.user.username;
     let prod;
+    let id = JSON.parse(localStorage.getItem("token"))?.user._id;
+    const usertoken = JSON.parse(localStorage.getItem("token"))?.token;
     function cartproducts(){
     const array = [];
-    fetch(`https://flipkart-dummy-server.herokuapp.com/cart/`).then(function(res){
+    fetch(`https://flipkart-dummy-server.herokuapp.com/cart/${id}`,{
+        headers : {authorization : "Bearer"+" "+usertoken}
+    }).then(function(res){
         return res.json(); 
         }).then(function(res){
         console.log(res.cart, "cart prod");
@@ -544,7 +550,9 @@
         data.forEach((el)=>{
             array.push(el);
         })
-        showCart(array);
+        return showCart(array);
+        }).catch((e)=>{
+            alert("Error : Please login first");
         });
 }
 cartproducts();
@@ -641,11 +649,13 @@ cartproducts();
         console.log(p._id);
         fetch("https://flipkart-dummy-server.herokuapp.com/cart/"+ p._id, {
         method: "DELETE",
-        headers: {"Content-type": "application/json; charset=UTF-8"}
+        headers: {"Content-type": "application/json; charset=UTF-8",authorization : "Bearer"+" "+usertoken}
         }).then(res => {
         console.log("Request complete! response:", res);
         alert(`${p.product.name} is removed from your cart`);
-        cartproducts();
+        return cartproducts();
+        }).catch((e)=>{
+            alert("Error : Please login first");
         });
 
     }
@@ -658,14 +668,19 @@ cartproducts();
         fetch("https://flipkart-dummy-server.herokuapp.com/wishlist/", {
         method: "POST",
         body: JSON.stringify({product: prod.product._id,}),
-        headers: {"Content-type": "application/json; charset=UTF-8"}
+        headers: {"Content-type": "application/json; charset=UTF-8",authorization : "Bearer"+" "+usertoken}
         }).then(res => {
         console.log("Request complete! response:", res);
         alert(`${prod.product.name} is added to your wishlist`);
+        return removeFromCart(prod);
+        }).catch((e)=>{
+            alert("Error : Please login first");
         });
-
-        removeFromCart(prod)
-
+    }
+    function logout(){
+        console.log("you logoutted");
+        localStorage.removeItem("token");
+        window.location.href = "index.html";
     }
 </script>
 

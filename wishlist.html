@@ -84,32 +84,14 @@
 
   let nbar = document.querySelector(".navbar");
   nbar.innerHTML = navbar();
-
-  // WishlistProducts
-
-  // let product = {
-  //           "id": "rec1d4TAFbbDv9zVA",
-  //           "fields": {
-  //               "discount_price": "1370",
-  //               "category": "mensshoes",
-  //               "id": "3c4761fde1126d0a1af655e5b47e3e7d",
-  //               "image": "[\"http://img6a.flixcart.com/image/shoe/b/4/y/brown-new-formal-liberty-44-original-imaejbeqse7sp4xf.jpeg\", \"http://img5a.flixcart.com/image/shoe/b/4/y/brown-new-formal-liberty-44-original-imaejbeq5h8x3pqz.jpeg\", \"http://img5a.flixcart.com/image/shoe/b/4/y/brown-new-formal-liberty-41-original-imaejbeqz98s6zpv.jpeg\", \"http://img6a.flixcart.com/image/shoe/b/4/y/brown-new-formal-liberty-41-original-imaejbeqstksudub.jpeg\", \"http://img5a.flixcart.com/image/shoe/b/4/y/brown-new-formal-liberty-44-original-imaejbeqybpwgxdf.jpeg\"]",
-  //               "retail_price": "1999",
-  //               "description": "Key Features of Liberty Formal Brown Shoes Slip On The sharp style and clean cut of this fabulous pair will definitely get you the title of Style Guru in your office,Liberty Formal Brown Shoes Slip On Price: Rs. 1,370 Designed in a sleek manner, these shoes make a great pick for your formal attire and you are sure to get many compliments.,Specifications of Liberty Formal Brown Shoes Slip On General Ideal For Men Occasion Formal Shoe Details Heel Height 1 inch Outer Material Artificial Leather Color Brown Additional Details Care Instructions Rotate Your Pair Of Shoes Once Every Other Day, Allowing Them To De-Odorize And Retain Their Shapes. Use Shoe Bags To Prevent Any Stains Or Mildew. Dust Any Dry Dirt From The Surface Using A Clean Cloth.",
-  //               "tree": "[\"Footwear >> Men's Footwear >> Formal Shoes >> Liberty Formal Shoes >> Liberty Formal Brown Shoes Slip On\"]",
-  //               "name": "Liberty Formal Brown Shoes Slip On"
-  //           },
-  //           "createdTime": "2021-11-09T10:25:21.000Z"
-  //       };        
-
-  // if(localStorage.getItem("Wishlist")===null)
-  // {
-  //   localStorage.setItem("Wishlist",JSON.stringify([product,product,product,product]));
-  // }
   let prod;
+  const usertoken = JSON.parse(localStorage.getItem("token"))?.token;
+  let id = JSON.parse(localStorage.getItem("token"))?.user._id;
   function wishproducts(){
     const array = [];
-    fetch(`https://flipkart-dummy-server.herokuapp.com/wishlist/`).then(function(res){
+    fetch(`https://flipkart-dummy-server.herokuapp.com/wishlist/${id}`,{
+      headers : {authorization : "Bearer"+" "+usertoken}
+    }).then(function(res){
       return res.json(); 
       }).then(function(res){
         console.log(res.wishlist);
@@ -117,8 +99,10 @@
         data.forEach((el)=>{
           array.push(el);
         })
-        showWproducts(array);
-    });
+        return showWproducts(array);
+    }).catch((e)=>{
+            alert("Error : Please login first");
+        });
   }
   wishproducts();
   let heading = document.querySelector(".wishHeading");
@@ -197,13 +181,15 @@
     console.log(p._id);
     fetch("https://flipkart-dummy-server.herokuapp.com/wishlist/"+ p._id, {
     method: "DELETE",
-    headers: {"Content-type": "application/json; charset=UTF-8"}
+    headers: {"Content-type": "application/json; charset=UTF-8",authorization : "Bearer"+" "+usertoken}
     }).then(res => {
       console.log("Request complete! response:", res);
-      alert(`${p.product.name} is removed from your wishlist`);
-    });
+      return alert(`${p.product.name} is removed from your wishlist`);
+    }).catch((e)=>{
+            alert("Error : Please login first");
+        });
 
-    wishproducts();
+    location.reload();
   }
 
     // Footer 
@@ -222,9 +208,20 @@
     micon.innerText = "arrow_drop_down";
   }
   let checkin = document.querySelector(".login");
-let abc = localStorage.getItem("flag1");
-if(abc)
-{
-  checkin.innerText = "Vasu";
+  let dropdown = document.querySelector(".login_dropdown");
+  console.log(dropdown);
+  if(localStorage.getItem("token"))
+  {
+    checkin.innerText = JSON.parse(localStorage.getItem("token")).user.username;
+    checkin.style.color= "white";
+    let logindiv = document.querySelector(".login_div");
+    logindiv.style.backgroundColor = "inherit";
+    dropdown.innerHTML += `<li><span class="material-icons">power_settings_new</span>Logout</li>`;
+    dropdown.lastChild.addEventListener("click",()=>{logout()});
+  }
+  function logout(){
+  console.log("you logoutted");
+  localStorage.removeItem("token");
+  window.location.href = "index.html";
 }
 </script>

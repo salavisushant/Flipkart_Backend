@@ -429,13 +429,15 @@
         }
   
 
+        const usertoken = JSON.parse(localStorage.getItem("token"))?.token;
         
         function addToWishlist(){//Double click to add
 
           let heart_button = document.querySelector('.heart');
 
+
           console.log(prod._id);
-          fetch(`https://flipkart-dummy-server.herokuapp.com/wishlist`).then(function(res){
+          fetch(`https://flipkart-dummy-server.herokuapp.com/wishlist`,{headers : {authorization : "Bearer"+" "+usertoken}}).then(function(res){
           return res.json(); 
           }).then(function(res){
             let data = res.wishlist;
@@ -443,13 +445,15 @@
             if(data.length == 0)
             {
               fetch("https://flipkart-dummy-server.herokuapp.com/wishlist", {
-                method: "POST",
-                body: JSON.stringify({product: prod,}),
-                headers: {"Content-type": "application/json; charset=UTF-8"}
-                }).then(res => {
-                  alert(`${prod.name} is added to your wishlist`);
-                  heart_button.style.color="red";
-                });
+              method: "POST",
+              body: JSON.stringify({product: prod,}),
+              headers: {"Content-type": "application/json; charset=UTF-8",authorization : "Bearer"+" "+usertoken}
+              }).then(res => {
+                heart_button.style.color="red";
+                return alert(`${prod.name} is added to your wishlist`);
+              }).catch((e)=>{
+                  alert("Error : Please login first");
+              });
             }
             else{
               data.forEach((el)=>{
@@ -457,27 +461,33 @@
                 {
                   fetch("https://flipkart-dummy-server.herokuapp.com/wishlist/"+ el._id, {
                   method: "DELETE",
-                  headers: {"Content-type": "application/json; charset=UTF-8"}
+                  headers: {"Content-type": "application/json; charset=UTF-8",authorization : "Bearer"+" "+usertoken}
                   }).then(res => {
                     console.log("Request complete! response:", res);
                     heart_button.style.color="grey";
-                    alert(`${prod.name} is removed from your wishlist`);
+                    return alert(`${prod.name} is removed from your wishlist`);
+                  }).catch((e)=>{
+                      alert("Error : ",e);
                   });
                 }
                 else{
                   fetch("https://flipkart-dummy-server.herokuapp.com/wishlist/", {
                   method: "POST",
                   body: JSON.stringify({product: prod._id,}),
-                  headers: {"Content-type": "application/json; charset=UTF-8"}
+                  headers: {"Content-type": "application/json; charset=UTF-8",authorization : "Bearer"+" "+usertoken}
                   }).then(res => {
                     console.log("Request complete! response:", res);
-                    alert(`${prod.name} is added to your wishlist`);
                     heart_button.style.color="red";
+                    return alert(`${prod.name} is added to your wishlist`);
+                  }).catch((e)=>{
+                      alert("Error : Please login first");
                   });
                 }
               });
             }
-          })          
+          }).catch((e)=>{
+            alert("Error : Please login first")
+          });
         }
   
         function addproduct(){
@@ -485,9 +495,11 @@
           fetch("https://flipkart-dummy-server.herokuapp.com/cart", {
           method: "POST",
           body: JSON.stringify({product: prod,}),
-          headers: {"Content-type": "application/json; charset=UTF-8"}
+          headers: {"Content-type": "application/json; charset=UTF-8",authorization : "Bearer"+" "+usertoken}
           }).then(res => {
-            alert(`${prod.name} is added to your cart`);
+            return alert(`${prod.name} is added to your cart`);
+          }).catch((e)=>{
+              alert("Error : Please login first");
           });
         }
       
@@ -519,10 +531,21 @@
 // }  
 
 let checkin = document.querySelector(".login");
-let abc = localStorage.getItem("flag1");
-if(abc)
+let dropdown = document.querySelector(".login_dropdown");
+console.log(dropdown);
+if(localStorage.getItem("token"))
 {
-  checkin.innerText = "Vasu";
+  checkin.innerText = JSON.parse(localStorage.getItem("token")).user.username;
+  checkin.style.color= "white";
+  let logindiv = document.querySelector(".login_div");
+  logindiv.style.backgroundColor = "inherit";
+  dropdown.innerHTML += `<li><span class="material-icons">power_settings_new</span>Logout</li>`;
+  dropdown.lastChild.addEventListener("click",()=>{logout()});
+}
+function logout(){
+  console.log("you logoutted");
+  localStorage.removeItem("token");
+  window.location.href = "index.html";
 }
 
   </script>   

@@ -28,9 +28,20 @@
     let nbar = document.querySelector(".navbar");
     nbar.innerHTML = navbar();
     let checkin = document.querySelector(".login");
-let abc = localStorage.getItem("flag1");
-if(abc)
-{
-  checkin.innerText = "Vasu";
-}
+    let dropdown = document.querySelector(".login_dropdown");
+    console.log(dropdown);
+    if(localStorage.getItem("token"))
+    {
+        checkin.innerText = JSON.parse(localStorage.getItem("token")).user.username;
+        checkin.style.color= "white";
+        let logindiv = document.querySelector(".login_div");
+        logindiv.style.backgroundColor = "inherit";
+        dropdown.innerHTML += `<li><span class="material-icons">power_settings_new</span>Logout</li>`;
+        dropdown.lastChild.addEventListener("click",()=>{logout()});
+    }
+    function logout(){
+        console.log("you logoutted");
+        localStorage.removeItem("token");
+        location.reload();
+    }
 </script>
