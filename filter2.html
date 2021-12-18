@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link
+      rel="icon"
+      type="image/png"
+      href="https://www.freepnglogos.com/uploads/flipkart-logo-png/flipkart-logo-transparent-png-download-0.png"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css"
+      integrity="sha512-5A8nwdMOWrSz20fDsjczgUidUBR8liPYU+WymTZP1lmY9G6Oc7HlZv156XqnsgNUzTyMefFTcsFH/tnJE/+xBg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+    <link rel="stylesheet" href="style/style2.css" />
+    <title>Products</title>
+  </head>
+  <body>
+    <div class="navbar"></div>
+    <div class="container1">
+      <div id="sidebar">
+        <div class="il">
+          <a class="cat_title"> Filter </a>
+          <a id="total"></a>
+          <a
+            class="primary-clr"
+            href="#"
+            onclick="window.location.reload(true)"
+          >
+            Clear Filters</a
+          >
+        </div>
+
+        <!-- <input type="checkbox" onchange="shoes()" class="mens" value="" />Men's
+        <input
+          type="checkbox"
+          onchange="shoes()"
+          class="womens"
+          value=""
+        />Women's -->
+        <p class="cat_title">Price</p>
+
+        <ul>
+          <li class="cat_itm">
+            <a onclick="(lowtohigh())"> Low to High </a>
+          </li>
+
+          <li class="cat_itm">
+            <a onclick="hightoLow()"> High to Low </a>
+          </li>
+        </ul>
+        <p class="cat_title">Price Range</p>
+        <div class="minmax">
+          <!-- <input type="number" id="min" required placeholder="Min" />
+
+          <input type="number" id="max" required placeholder="Max" /> -->
+
+          <select name="" id="min" onchange="sortByrange()">
+            <option value="1">Min</option>
+            <option value="250">250</option>
+            <option value="500">500</option>
+            <option value="1000">1000</option>
+            <option value="1500">1500</option>
+            <option value="2000">2000</option>
+            <option value="2500">2500</option>
+          </select>
+          <select name="" id="max" onchange="sortByrange()">
+            <option value="250">250</option>
+            <option value="500">500</option>
+            <option value="1000">1000</option>
+            <option value="1500">1500</option>
+            <option value="2000">2000</option>
+            <option value="2500">2500</option>
+            <option value="50000" selected>Max</option>
+          </select>
+        </div>
+        <div class="assurediv">
+          <input
+            type="checkbox"
+            onchange="assuredprods()"
+            class="assurecheckbx"
+            id="assured"
+            value=""
+          />
+          <img
+            class="assureimg"
+            src="https://static-assets-web.flixcart.com/www/linchpin/fk-cp-zion/img/fa_62673a.png"
+            alt=""
+          />
+        </div>
+        <div id="gender">
+          <p class="cat_title">Gender</p>
+          <ul>
+            <li class="cat_itm minmax">
+              <select class="gen" onchange="bygen()" name="" id="gen">
+                <option>-- Select --</option>
+                <option value="men">Men</option>
+                <option value="women">Women</option>
+              </select>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="products" id="productList"></div>
+    </div>
+    <div class="flipkart_info"></div>
+    <div class="foot"></div>
+  </body>
+</html>
+<script type="module">
+  import navbar from "./components/navbar.js";
+  import {footer,Flipkartinfo} from "./components/footer.js";
+  import {search,debounce,displayResults} from "./scripts/script.js";
+  let nbar = document.querySelector(".navbar");
+  nbar.innerHTML = navbar();
+  let more = document.querySelector(".more");
+  let micon = document.getElementById("micon");
+  more.onmouseenter = function(){
+    micon.innerText = "arrow_drop_up";
+  }
+  more.onmouseleave = function(){
+    micon.innerText = "arrow_drop_down";
+  }
+  let searchbar = document.getElementById("searchbox");
+  let output = document.getElementById("output");
+  searchbar.oninput = function(){
+    debounce(search,1000);
+  }
+  let checkin = document.querySelector(".login");
+let dropdown = document.querySelector(".login_dropdown");
+console.log(dropdown);
+if(localStorage.getItem("token"))
+{
+  checkin.innerText = JSON.parse(localStorage.getItem("token")).user.username;
+  checkin.style.color= "white";
+  let logindiv = document.querySelector(".login_div");
+  logindiv.style.backgroundColor = "inherit";
+  dropdown.innerHTML += `<li><span class="material-icons">power_settings_new</span>Logout</li>`;
+  dropdown.lastChild.addEventListener("click",()=>{logout()});
+}
+// page_info
+let info = document.querySelector(".flipkart_info")
+info.innerHTML = Flipkartinfo();
+// Footer 
+let foot = document.querySelector('.foot');
+foot.innerHTML = footer();
+function logout(){
+  console.log("you logoutted");
+  localStorage.removeItem("token");
+  location.reload();
+}
+</script>
+<script src="./scripts/filter2.js"></script>

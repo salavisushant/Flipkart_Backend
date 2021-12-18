@@ -312,7 +312,7 @@ body{
     margin-top: inherit;
     text-decoration: none;
 }
-.categories>div>a:nth-child(7) img,.categories>div>a:nth-child(5) img{
+.categories>div>a:nth-child(5) img{
     margin-left: 12px;
 }
 .categories>div>a:nth-child(6) p{
