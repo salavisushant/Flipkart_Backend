@@ -200,6 +200,9 @@
   searchbar.oninput = function(){
     debounce(search,1000);
   }
+  window.onhashchange = function() { 
+     location.reload();
+    }
 </script>
     <script>
     var prod;
