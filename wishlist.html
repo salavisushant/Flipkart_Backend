@@ -184,12 +184,12 @@
     headers: {"Content-type": "application/json; charset=UTF-8",authorization : "Bearer"+" "+usertoken}
     }).then(res => {
       console.log("Request complete! response:", res);
-      return alert(`${p.product.name} is removed from your wishlist`);
+      alert(`${p.product.name} is removed from your wishlist`);
+      return wishproducts();
     }).catch((e)=>{
-            alert("Error : Please login first");
+          return alert("Error : Please login first");
         });
 
-    location.reload();
   }
 
     // Footer 
