@@ -26,7 +26,7 @@ router.get("",async(req,res)=>{
 
 router.get("/category/:category",async(req,res)=>{
     try{
-        const products = await Product.find({category : req.params.category}).limit(30).lean().exec();
+        const products = await Product.find({category : req.params.category}).limit(28).lean().exec();
 
         res.status(201).json({products});
     }catch(e){

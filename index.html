@@ -68,56 +68,54 @@
   searchbar.oninput = function(){
     debounce(search,1000);
   }
-// categories display
+  // categories display
   let cat = document.querySelector(".categories");
   cat.innerHTML = categories();
-// Slideshow Functionality start
+  // Slideshow Functionality start
   let slideshowCont = document.getElementById("slide1");
   slideshowCont.innerHTML = slideshow();
-
+  // page_info
   let info = document.querySelector(".flipkart_info")
   info.innerHTML = Flipkartinfo();
   // Footer 
   let foot = document.querySelector('.foot');
   foot.innerHTML = footer();
-  </script>
-  <script>
-  let slidePosition = 0;
-  let slides = document.getElementsByClassName("mySlides");
-  const totalslides = slides.length;
+let slidePosition = 0;
+let slides = document.getElementsByClassName("mySlides");
+const totalslides = slides.length;
 
-  document.getElementById("next").addEventListener("click", function () {
-    moveToNextSlide();
-  });
-  document.getElementById("prev").addEventListener("click", function () {
-    moveToPrevSlide();
-  });
+document.getElementById("next").addEventListener("click", function () {
+  moveToNextSlide();
+});
+document.getElementById("prev").addEventListener("click", function () {
+  moveToPrevSlide();
+});
 
-  function moveToNextSlide() {
-    if (slidePosition === totalslides - 1) {
-      slidePosition = 0;
-    } else {
-      slidePosition++;
-    }
-    updateSlidePosition();
+function moveToNextSlide() {
+  if (slidePosition === totalslides - 1) {
+    slidePosition = 0;
+  } else {
+    slidePosition++;
   }
-  function moveToPrevSlide() {
-    if (slidePosition === 0) {
-      slidePosition = totalslides - 1;
-    } else {
-      slidePosition--;
-    }
-    updateSlidePosition();
+  updateSlidePosition();
+}
+function moveToPrevSlide() {
+  if (slidePosition === 0) {
+    slidePosition = totalslides - 1;
+  } else {
+    slidePosition--;
   }
-  function updateSlidePosition() {
-    for (let slide of slides) {
-      slide.classList.remove("mySlides--visible");
-      slide.classList.add("mySlides--hidden");
-    }
-    slides[slidePosition].classList.add("mySlides--visible");
+  updateSlidePosition();
+}
+function updateSlidePosition() {
+  for (let slide of slides) {
+    slide.classList.remove("mySlides--visible");
+    slide.classList.add("mySlides--hidden");
   }
+  slides[slidePosition].classList.add("mySlides--visible");
+}
   // carousel functionality start
-  let slider1 = document.querySelector(".slider1");
+let slider1 = document.querySelector(".slider1");
   seggregate("travel",slider1);
   let slider2 = document.querySelector(".slider2");
   seggregate("homeappliances",slider2);
@@ -207,13 +205,8 @@
     window.setTimeout(()=>{
     start_slick('.slider3')}, 2000,);
 });
-window.addEventListener('click',()=>{
-  output.style.display = "none";
-})
-
 let checkin = document.querySelector(".login");
 let dropdown = document.querySelector(".login_dropdown");
-console.log(dropdown);
 if(localStorage.getItem("token"))
 {
   checkin.innerText = JSON.parse(localStorage.getItem("token")).user.username;
@@ -222,8 +215,16 @@ if(localStorage.getItem("token"))
   logindiv.style.backgroundColor = "inherit";
   dropdown.innerHTML += `<li><span class="material-icons">power_settings_new</span>Logout</li>`;
   dropdown.lastChild.addEventListener("click",()=>{logout()});
+  document.querySelector('.login_dropdown').removeChild(document.querySelector('.login_dropdown').getElementsByTagName('li')[0]);
+  console.log(dropdown);
 }
-// page_info
+</script>
+<script>
+  
+window.addEventListener('click',()=>{
+  output.style.display = "none";
+})
+
 
 function logout(){
   console.log("you logoutted");

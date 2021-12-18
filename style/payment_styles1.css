@@ -466,4 +466,16 @@
         font-weight: 500;
         margin-left: 130px;
     }
+    .change_btnA > button{
+        margin-left: 83%;
+    }
+    .adform input{
+        font-size: large;
+    }
+    .contentN, .contentM, .contentA{
+        font-size: larger;
+    }
+    .change_btn1 button{
+        margin-left: 400%;
+    }
     

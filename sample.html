@@ -187,7 +187,9 @@ function login(){
         console.log(res);
         localStorage.setItem("token",JSON.stringify(res));
         alert("user successfully Loggedin");
-        window.location.href = "index.html";
+        return window.location.href = "index.html";
+    }).catch((e)=>{
+        return alert("Incorrect login credentials");
     });
 }
 </script>

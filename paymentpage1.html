@@ -14,7 +14,7 @@
     <div style="display: flex; flex-direction: column;">
         <div class="header">
             <div>
-                <img src="https://static-assets-web.flixcart.com/www/linchpin/fk-cp-zion/img/fk-plus_3b0baa.png" alt="">
+                <a href="index.html"><img src="https://static-assets-web.flixcart.com/www/linchpin/fk-cp-zion/img/fk-plus_3b0baa.png" alt=""></a>
             </div>
         </div>
         <section class="background">
@@ -24,23 +24,37 @@
                         <div class="no">1</div>
                         <div>
                             <div class="heading">LOGIN <span class="material-icons-outlined">done</span></div>
-                            <div class="content">Vasu <span class="font">vasukomuravelli96@gmail.com</span> </div>
+                            <div style="display: flex;">
+                                <p class="contentN">USER</p>
+                                <p class="font" id="contentM">usermail</p>
+                            </div>
                         </div>
-                        <div class="change_btn"><button>CHANGE</button></div>
+                        <div class="change_btn1"><button>CHANGE</button></div>
                     </div>
                     <div class="login">
                         <div class="no">2</div>
                         <div>
                             <div class="heading">DELIVERY ADDRESS <span class="material-icons-outlined">done</span></div>
-                            <div class="content">Vasu <span class="font">Warangal,Telangana-506002</span> </div>
+                            <div style="display: flex;">
+                                <p class="contentN">USER</p>
+                                <p class="font" id="contentA">Address</p>
+                            </div>
                         </div>
-                        <div class="change_btn"><button>CHANGE</button></div>
+                        <div class="change_btnA" onclick="show()">
+                            <button>CHANGE</button>
+                            <form class="adform" style="display: none;" onsubmit="subadd()">
+                                <input type="text" placeholder="Enter your address" id="addr">
+                                <input type="text" placeholder="Enter your Pincode" id="pincode">
+                                <input type="text" placeholder="Enter your Mobile number" id="mobi">
+                                <input type="submit">
+                            </form>
+                        </div>
                     </div>
                     <div class="login">
                         <div class="no">3</div>
                         <div>
                             <div class="heading">ORDER SUMMARY <span class="material-icons-outlined">done</span></div>
-                            <div class="content"><span class="items">#</span> item</div>
+                            <div class="content"><span class="items"></span> item</div>
                         </div>
                         <div class="change_btn"><button>CHANGE</button></div>
                     </div>
@@ -117,6 +131,57 @@
 </html>
 
 <script>
+    let name = JSON.parse(localStorage.getItem("token"))?.user.username;
+    let mail = JSON.parse(localStorage.getItem("token"))?.user.email;
+    let id = JSON.parse(localStorage.getItem("token"))?.user._id;
+    let usertoken = JSON.parse(localStorage.getItem("token"))?.token;
+
+    let user = document.querySelectorAll(".contentN");
+    user[0].textContent = name;
+    user[1].textContent = name;
+    document.getElementById("contentM").textContent = mail;
+
+    function subadd(){
+        let data = `${document.getElementById("addr").value},${document.getElementById("pincode").value},${document.getElementById("mobi").value},`
+        
+        fetch("https://flipkart-dummy-server.herokuapp.com/user/"+id,{
+            method : "PATCH",
+            body : JSON.stringify({address : data}),
+            headers : {"Content-type": "application/json; charset=UTF-8",authorization : "Bearer"+" "+usertoken}
+        }).then((res)=>{
+            return res.json();
+        }).then((res)=>{
+            console.log(res,data);
+            document.getElementById("contentA").textContent = res.address;
+            return document.querySelector(".adform").style.display = "none"
+        }).catch((e)=>{
+           return alert("Error :",e);
+        })
+    }
+
+    fetch(`https://flipkart-dummy-server.herokuapp.com/cart/${id}`,{
+        headers : {authorization : "Bearer"+" "+usertoken}
+    }).then(function(res){
+        return res.json(); 
+        }).then(function(res){
+            console.log(res);            
+            document.querySelector(".items").textContent = (res.cart).length;
+        });
+    
+        fetch(`https://flipkart-dummy-server.herokuapp.com/user/${id}`,{
+        headers : {authorization : "Bearer"+" "+usertoken}
+    }).then(function(res){
+        return res.json(); 
+        }).then(function(res){
+            console.log(res);            
+            document.getElementById("contentA").textContent = res.address;
+        });
+
+    function show(){
+        let adres = document.querySelector(".adform");
+        adres.style.display = "block";
+        document.querySelector(".change_btnA > button").style.marginTop = "-12px";
+    }
 
     var flag = false;
 
@@ -162,10 +227,5 @@
     }
 
     let cart = JSON.parse(localStorage.getItem("cart"));
-
-    let quantity = document.querySelectorAll(".items");
-
-    quantity[0].textContent = cart.length;
-    quantity[1].textContent = cart.length;
 
 </script>

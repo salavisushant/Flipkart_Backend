@@ -560,6 +560,7 @@ if(localStorage.getItem("token"))
   let logindiv = document.querySelector(".login_div");
   logindiv.style.backgroundColor = "inherit";
   dropdown.innerHTML += `<li><span class="material-icons">power_settings_new</span>Logout</li>`;
+  document.querySelector('.login_dropdown').removeChild(document.querySelector('.login_dropdown').getElementsByTagName('li')[0]);
   dropdown.lastChild.addEventListener("click",()=>{logout()});
 }
 function logout(){
