@@ -4,6 +4,7 @@ const cors = require("cors");
 
 const ProductController = require("./controllers/product.controller");
 const CartController = require("./controllers/cart.controller");
+const UserController = require("./controllers/user.controller");
 const wishlistController = require("./controllers/wishlist.controller");
 const {register,login} = require("./controllers/auth.controller");
 
@@ -21,5 +22,6 @@ app.post("/login",login);
 app.use("/products",ProductController);
 app.use("/cart",CartController);
 app.use("/wishlist",wishlistController);
+app.use("/user",UserController);
 
 module.exports = app;

@@ -22,7 +22,7 @@
               </div>
               <div>
                   <p>Hello,</p>
-                  <p>User Name</p>
+                  <p class="usern">User Name</p>
               </div>
           </div>
           <div class="info">
@@ -81,11 +81,19 @@
 <script type="module">
   import navbar from "./components/navbar.js";
   import {footer,Flipkartinfo} from "./components/footer.js";
+  import {search,debounce,displayResults} from "./scripts/script.js";
 
   let nbar = document.querySelector(".navbar");
   nbar.innerHTML = navbar();
+  let searchbar = document.getElementById("searchbox");
+  let output = document.getElementById("output");
+  searchbar.oninput = function(){
+    debounce(search,1000);
+  }
   let prod;
   const usertoken = JSON.parse(localStorage.getItem("token"))?.token;
+  if(usertoken)
+  document.querySelector(".usern").innerText = JSON.parse(localStorage.getItem("token")).user.username;
   let id = JSON.parse(localStorage.getItem("token"))?.user._id;
   function wishproducts(){
     const array = [];

@@ -26,6 +26,7 @@ body{
 .navbar > :nth-child(1) a{
     color: inherit;
     margin-top: 1%;
+    text-decoration: none;
 }
 .logo{
     cursor: pointer;
@@ -156,6 +157,7 @@ body{
 .navbar>div>:last-child{
     color: inherit;
     margin-top: inherit;
+    text-decoration: none;
 }
 .navbar>div>:last-child>div{
     margin-top: 10px;

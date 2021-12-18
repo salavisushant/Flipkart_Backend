@@ -185,7 +185,22 @@
         </div>
     </div>
     </div> <!--footer--> 
-
+<script type="module">
+  import {search,debounce,displayResults} from "./scripts/script.js";
+  let more = document.querySelector(".more");
+  let micon = document.getElementById("micon");
+  more.onmouseenter = function(){
+    micon.innerText = "arrow_drop_up";
+  }
+  more.onmouseleave = function(){
+    micon.innerText = "arrow_drop_down";
+  }
+  let searchbar = document.getElementById("searchbox");
+  let output = document.getElementById("output");
+  searchbar.oninput = function(){
+    debounce(search,1000);
+  }
+</script>
     <script>
     var prod;
     let r_product = window.location.hash.split('=')[1];
