@@ -77,6 +77,13 @@
   let slideshowCont = document.getElementById("slide1");
   slideshowCont.innerHTML = slideshow();
 
+  let info = document.querySelector(".flipkart_info")
+  info.innerHTML = Flipkartinfo();
+  // Footer 
+  let foot = document.querySelector('.foot');
+  foot.innerHTML = footer();
+  </script>
+  <script>
   let slidePosition = 0;
   let slides = document.getElementsByClassName("mySlides");
   const totalslides = slides.length;
@@ -219,11 +226,7 @@ if(localStorage.getItem("token"))
   dropdown.lastChild.addEventListener("click",()=>{logout()});
 }
 // page_info
-let info = document.querySelector(".flipkart_info")
-info.innerHTML = Flipkartinfo();
-// Footer 
-let foot = document.querySelector('.foot');
-foot.innerHTML = footer();
+
 function logout(){
   console.log("you logoutted");
   localStorage.removeItem("token");
