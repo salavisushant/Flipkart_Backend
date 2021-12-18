@@ -430,6 +430,7 @@
   
 
         const usertoken = JSON.parse(localStorage.getItem("token"))?.token;
+        const userid = JSON.parse(localStorage.getItem("token"))?.user._id;
         
         function addToWishlist(){//Double click to add
 
@@ -437,7 +438,7 @@
 
 
           console.log(prod._id);
-          fetch(`https://flipkart-dummy-server.herokuapp.com/wishlist`,{headers : {authorization : "Bearer"+" "+usertoken}}).then(function(res){
+          fetch(`https://flipkart-dummy-server.herokuapp.com/wishlist/`+userid,{headers : {authorization : "Bearer"+" "+usertoken}}).then(function(res){
           return res.json(); 
           }).then(function(res){
             let data = res.wishlist;
