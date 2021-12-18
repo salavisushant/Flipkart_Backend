@@ -242,7 +242,7 @@ body {
   padding-left: 25px;
   padding-top: 10px;
   background-color: #fff;
-  margin-top: 50px;
+  margin-top: 20px;
 }
 .flipkart_info h1{
   font-size: 16px;
@@ -322,6 +322,7 @@ hr{
   grid-gap: 1%;
   padding: 1.5%;
   background-color: #fff;
+  padding-bottom: 12%;
 }
 
 .container1 > .products .card {
