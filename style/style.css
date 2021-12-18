@@ -357,9 +357,9 @@ body{
 }
 .banner{
     display: inline-block;
-    width: 23.42%;
+    width: 24%;
     height: 457px;
-    margin: 0.2% 0.2% auto 0.2%;
+    margin: 0.2% 0.5% auto 0.5%;
     vertical-align: top;
     cursor: pointer;
 }
