@@ -29,7 +29,7 @@ function products(AllProducts) {
   total.innerHTML = "( " + AllProducts.length + " Results)";
   AllProducts.forEach((prod) => {
     let a = document.createElement("a");
-    a.href = `/product.html#id=${prod._id}`;
+    a.href = `./product.html#id=${prod._id}`;
 
     let product_div = document.createElement("div");
     product_div.className = "card";
