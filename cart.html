@@ -307,7 +307,7 @@
         color:#ffffff;
         padding: 15px;
         margin-top:3.5%;
-        font-size: 15px;
+        font-size: larger;
         border: none;
         font-family: Arial, Helvetica, sans-serif;
         font-weight: 500;
@@ -534,13 +534,13 @@
 
 <script>
     let user = document.querySelector(".dropbtn");
-    user.innerText = JSON.parse(localStorage.getItem("token"))?.user.username;
     let prod;
     let id = JSON.parse(localStorage.getItem("token"))?.user._id;
     const usertoken = JSON.parse(localStorage.getItem("token"))?.token;
     function cartproducts(){
-    const array = [];
-    fetch(`https://flipkart-dummy-server.herokuapp.com/cart/${id}`,{
+        const array = [];
+        user.innerText = JSON.parse(localStorage.getItem("token"))?.user.username;
+        fetch(`https://flipkart-dummy-server.herokuapp.com/cart/${id}`,{
         headers : {authorization : "Bearer"+" "+usertoken}
     }).then(function(res){
         return res.json(); 

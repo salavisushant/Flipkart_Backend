@@ -29,6 +29,7 @@ body{
 .navbar > :nth-child(1) a{
   color: inherit;
   margin-top: 1%;
+  text-decoration: none;
 }
 .logo{
   cursor: pointer;
@@ -160,6 +161,7 @@ body{
 .navbar>div>:last-child{
   color: inherit;
   margin-top: inherit;
+  text-decoration: none;
 }
 .navbar>div>:last-child>div{
   margin-top: 10px;
@@ -186,6 +188,7 @@ body{
 .signup{
   margin-left: 40px;
   color: #2874f0;
+  text-decoration: none;
 }
 .login_dropdown>li>a{
   text-decoration: none;

@@ -293,7 +293,7 @@
         let buy = document.createElement("button");
         buy.innerHTML = `<span class="material-icons" style="margin-left:28%; margin-top:6%;">flash_on</span><p style="margin-top:8%; font-weight:790"> BUY NOW</p>`;
         buy.onclick = function () {
-          addproduct();
+          if(addproduct())
           window.location.href = "cart.html";
         };
         buttons.append(Add, buy);
@@ -492,16 +492,17 @@
         }
   
         function addproduct(){
-          
+
+          if(usertoken)         
           fetch("https://flipkart-dummy-server.herokuapp.com/cart", {
           method: "POST",
           body: JSON.stringify({product: prod,}),
           headers: {"Content-type": "application/json; charset=UTF-8",authorization : "Bearer"+" "+usertoken}
-          }).then(res => {
+          }).then((res) => {
             return alert(`${prod.name} is added to your cart`);
-          }).catch((e)=>{
-              alert("Error : Please login first");
           });
+          else          
+          alert("Error : Please login first");
         }
       
       });
