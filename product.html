@@ -303,9 +303,16 @@
   let buttons = document.getElementById("containbutton")
         
         let Add = document.createElement("button");
-        Add.innerHTML = `<span class="material-icons" style="margin-left:22%; margin-top:6%;">shopping_cart</span><p style="margin-top:8%; font-weight:790"> ADD TO CART</p>`;
+        Add.innerHTML = `<span class="material-icons" style="margin-left:22%; margin-top:6%;">shopping_cart</span><p style="margin-top:8%; font-weight:790"; class ="add">ADD TO CART</p>`;
         Add.onclick = function () {
-          addproduct();
+          if(document.querySelector(".add").textContent==="ADD TO CART")
+          {
+            addproduct();
+          }
+          else
+          {
+            window.location.href = "cart.html";
+          }
         };
         
         let buy = document.createElement("button");
@@ -548,7 +555,40 @@
 // data.push(prod_data);
 // localStorage.setItem("prods",JSON.stringify(data));
 
-// }  
+// }
+
+if(JSON.parse(localStorage.getItem("token")).token)
+{
+  let id = JSON.parse(localStorage.getItem("token")).user._id;
+  let usertoken = JSON.parse(localStorage.getItem("token")).token;
+  fetch(`https://flipkart-dummy-server.herokuapp.com/cart/${id}`,{
+        headers : {authorization : "Bearer"+" "+usertoken}
+    }).then(function(res){
+        return res.json(); 
+        }).then(function(res){
+        let data = res.cart;
+        data.forEach((el)=>{
+          if(el.product.name===prod.name)
+          {
+            document.querySelector(".add").textContent = "GO TO CART";
+          }
+        })
+      });
+
+      fetch(`https://flipkart-dummy-server.herokuapp.com/wishlist/${id}`,{
+        headers : {authorization : "Bearer"+" "+usertoken}
+    }).then(function(res){
+        return res.json(); 
+        }).then(function(res){
+        let data = res.wishlist;
+        data.forEach((el)=>{
+          if(el.product.name===prod.name)
+          {
+            document.querySelector('.heart').style.color = "RED";
+          }
+        })
+      });
+} 
 
 let checkin = document.querySelector(".login");
 let dropdown = document.querySelector(".login_dropdown");
