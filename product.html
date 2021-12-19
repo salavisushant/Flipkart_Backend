@@ -524,6 +524,7 @@
           body: JSON.stringify({product: prod,}),
           headers: {"Content-type": "application/json; charset=UTF-8",authorization : "Bearer"+" "+usertoken}
           }).then((res) => {
+            document.querySelector(".add").textContent = "GO TO CART";
             return alert(`${prod.name} is added to your cart`);
           });
           else          
