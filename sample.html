@@ -186,10 +186,13 @@ function login(){
     }).then((res)=>{
         console.log(res);
         localStorage.setItem("token",JSON.stringify(res));
-        alert("user successfully Loggedin");
-        return window.location.href = "index.html";
-    }).catch((e)=>{
-        return alert("Incorrect login credentials");
+        if(JSON.parse(localStorage.getItem("token")).token)
+        {
+            alert("user successfully Loggedin");
+            return window.location.href = "index.html";
+        }else{
+            return alert("Incorrect login credentials");
+        }
     });
 }
 </script>
