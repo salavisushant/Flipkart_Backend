@@ -187,12 +187,12 @@
                     <div class="line"></div>
                     <div class="div-2">
                         <p class="txt1">Delivery Address</p>
-                        <p class="txt2">Name:vasu</p>
-                        <p class="txt2">Addess line 1: 12-8-45/2</p>
-                        <p class="txt2">Addess line 2: Ramannapet</p>
-                        <p class="txt2">Addess line 3: Warangal,Telangana</p>
-                        <p class="txt2">Pincode : 506002</p>
-                        <p class="txt2">Mobile: 9492370877</p>
+                        <p class="txt2" id="custN">Name</p>
+                        <p class="txt2" id="custA">Addess line 1</p>
+                        <p class="txt2">Addess line 2: </p>
+                        <p class="txt2">Addess line 3: </p>
+                        <p class="txt2" id="custP" >Pincode : 506002</p>
+                        <p class="txt2" id="custM">Mobile: 9492370877</p>
                     </div>
                 </div>
                 <div class="pro-det">
@@ -205,6 +205,22 @@
 </body>
 </html>
 <script>
+let name = JSON.parse(localStorage.getItem("token"))?.user.username;
+let usertoken = JSON.parse(localStorage.getItem("token"))?.token;
+let id = JSON.parse(localStorage.getItem("token"))?.user._id;
+let amount = window.location.hash.split('=')[1];
+let mail = JSON.parse(localStorage.getItem("token"))?.user.email;
+fetch(`https://flipkart-dummy-server.herokuapp.com/user/${id}`,{
+        headers : {authorization : "Bearer"+" "+usertoken}
+    }).then(function(res){
+        return res.json(); 
+        }).then(function(res){
+            console.log(res);            
+            document.getElementById("custM").textContent = `Phone number : ${res.address[0].split(',')[2]}`;
+            document.getElementById("custN").textContent = `Name         : ${name}`;
+            document.getElementById("custA").textContent = `Email ID     : ${res.address[0].split(',')[0]}`;
+            document.getElementById("custP").textContent = `Email ID     : ${res.address[0].split(',')[1]}`;
+        });
     setTimeout(()=>{
         window.location.href = "index.html";
     },3000);

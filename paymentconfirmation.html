@@ -72,9 +72,9 @@
             <div class="div" id="amount">Total Amount &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;₹ ####</div>
             <div class="div">Paid for &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Flipkart</div>
             <p>CUSTOMER DETAILS</p>
-            <div class="div">Name &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;vasu</div>
-            <div class="div">Email ID &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;vasukomuravelli96@gmail.com</div>
-            <div class="div">Phone number&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;9492370877</div>
+            <div class="div" id="custN">Name &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;vasu</div>
+            <div class="div" id="custE">Email ID &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;vasukomuravelli96@gmail.com</div>
+            <div class="div" id = "custM">Phone number&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;9492370877</div>
         </div>
     </div>
 </body>
@@ -82,11 +82,23 @@
 
 <script>
 
-    let amount = window.location.hash.split('=')[1];
+let name = JSON.parse(localStorage.getItem("token"))?.user.username;
+let usertoken = JSON.parse(localStorage.getItem("token"))?.token;
+let id = JSON.parse(localStorage.getItem("token"))?.user._id;
+let amount = window.location.hash.split('=')[1];
+let mail = JSON.parse(localStorage.getItem("token"))?.user.email;
+fetch(`https://flipkart-dummy-server.herokuapp.com/user/${id}`,{
+        headers : {authorization : "Bearer"+" "+usertoken}
+    }).then(function(res){
+        return res.json(); 
+        }).then(function(res){
+            console.log(res);            
+            document.getElementById("custM").textContent = `Phone number : ${res.address[0].split(',')[2]}`;
+            document.getElementById("custN").textContent = `Name         : ${name}`;
+            document.getElementById("custE").textContent = `Email ID     : ${mail}`;
+            document.getElementById("amount").textContent = `Total Amount : ₹${amount}`;
+        });
 
-    let paid_amount = document.getElementById("amount");
-
-    paid_amount.textContent = `Total Amount ₹ ${amount}`;
 
     function loadingPage2()
     {

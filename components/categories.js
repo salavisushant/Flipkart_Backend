@@ -26,7 +26,7 @@ function categories(){
             <p>Home</p>
         </div></a>
         <a href = "filter2.html#category=shoes"><div>
-            <img src="https://lh3.googleusercontent.com/proxy/bf-Fxtjcq5hqMvP55diNud-9qk9pmDAjAOEdjIm6YadRJz7zHtyVLwHeXBpBLsvqKhZYd5ZM-pBD5jZnsgUE8pDx3_g2-tvRiF8gvmp0L5Gqa6hSQO0hB7e4FJ2RlCcFe5fLWfTgaGqTkW7vT-luRlr-x-hZOnrL7FQ"/>
+            <img src="https://i.postimg.cc/G3K6YFWw/image.jpg"/>
             <p>Shoes</p>
         </div></a>
         <a href = "filter2.html#category=travel"><div>
